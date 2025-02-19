@@ -1,18 +1,17 @@
 //
-//  ContentView.swift
+//  Dashboard.swift
 //  SummersWellnessFarm
 //
-//  Created by Grace Beard on 2/16/25.
-// test
+//  Created by Grace Beard on 2/19/25.
+//
 
 import SwiftUI
 
-struct ContentView: View {
+struct Dashboard: View {
     var body: some View {
-        Text("Summers Wellness Farm")
+        Text("Dashboard")
             .font(.largeTitle)
                 .padding()
-        Text("Welcome Name!")
     }
 }
 
