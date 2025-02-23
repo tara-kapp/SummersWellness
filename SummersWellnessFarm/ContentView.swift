@@ -9,9 +9,21 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, iPad!")
-            .font(.largeTitle)
+
+    
+        NavigationStack{
+            Text("Summers Wellness Farm")
+                .font(.largeTitle)
                 .padding()
+            Text("Welcome Name!")
+            
+            
+            // Dashboard button
+            NavigationLink(destination: Dashboard()){
+                Text("Personal Dashboard")
+                    .modifier(CustomButtonStyle())
+            }
+                    }
     }
 }
 
