@@ -79,9 +79,9 @@ struct ContentViewCards: View {
     ]
     let options2 = [
         ScrollableOption(image: "apple.meditate", text: "Meditate"),
-        ScrollableOption(image: "brain", text: "Test"),
-        ScrollableOption(image: "pill", text: "Test"),
-        ScrollableOption(image: "cross", text: "Test"),
+        ScrollableOption(image: "brain", text: "Hopefully"),
+        ScrollableOption(image: "pill", text: "This"),
+        ScrollableOption(image: "cross", text: "Works"),
         ScrollableOption(image: "heart", text: "Test"),
     ]
     
