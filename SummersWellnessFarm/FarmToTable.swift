@@ -46,6 +46,10 @@ struct FarmToTableView: View {
                 - Enjoy meals crafted from our freshest ingredients
                 - Reservations available for lunch and dinner
                 """)
+                
+                SectionView(title: "plz work", content: """
+                blah blah blah
+                """)
 
                 Spacer()
             }
