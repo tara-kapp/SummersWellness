@@ -5,6 +5,18 @@
 //  Created by Grace Beard on 2/21/25.
 //
 import SwiftUI
+
+
+// Navigation Link
+struct BookActivities: View {
+    var body: some View {
+        VStack{
+            
+        }
+        .navigationTitle("Book Activities")
+    }
+}
+
 struct ScrollableOption: Identifiable {
     let id = UUID()
     let image: String
@@ -79,9 +91,14 @@ struct ContentViewCards: View {
     ]
     let options2 = [
         ScrollableOption(image: "apple.meditate", text: "Meditate"),
+
+        ScrollableOption(image: "brain", text: "Test"),
+        ScrollableOption(image: "pill", text: "Test"),
+        ScrollableOption(image: "cross", text: "Test"),
         ScrollableOption(image: "brain", text: "Hopefully"),
         ScrollableOption(image: "pill", text: "This"),
         ScrollableOption(image: "cross", text: "Works"),
+
         ScrollableOption(image: "heart", text: "Test"),
     ]
     

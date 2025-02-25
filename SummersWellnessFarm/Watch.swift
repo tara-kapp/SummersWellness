@@ -6,6 +6,15 @@
 //
 
 import SwiftUI
+// Navigation Link
+struct Watch: View{
+    var body: some View{
+        VStack{
+            
+        }
+        .navigationTitle("Watch Integration")
+    }
+}
 
 struct WatchIntegrationView: View {
     var body: some View {
