@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-
 // Navigation Link
 struct Watch: View{
     var body: some View{

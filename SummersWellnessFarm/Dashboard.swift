@@ -8,6 +8,7 @@
 import SwiftUI
 
 
+
 struct Dashboard: View {
     var body: some View {
         VStack{
@@ -48,6 +49,13 @@ struct CustomButtonStyle: ViewModifier{
             .background(Color.green)
             .cornerRadius(10)
             .shadow(radius:5)
+
+struct Dashboard: View {
+    var body: some View {
+        Text("Dashboard")
+            .font(.largeTitle)
+                .padding()
+
     }
 }
 
