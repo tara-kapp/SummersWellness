@@ -79,11 +79,10 @@ struct ExploreTheFarm_Previews: PreviewProvider {
 
 
 
-// Navigation Link
-struct ExploreTheFarm: View {
+struct ExploreTheFarmNav: View {
     var body: some View {
         VStack{
-            
+            ExploreTheFarm()
         }
         .navigationTitle("Explore the Farm")
     }

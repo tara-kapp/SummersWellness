@@ -4,14 +4,23 @@
 //
 //  Created by Grace Beard on 2/21/25.
 //
+
 import SwiftUI
 
-
-// Navigation Link
 struct BookActivities: View {
     var body: some View {
-        VStack{
+        VStack {
+            Text("Book Activities") // Ensure content is present
+                .font(.title)
+                .fontWeight(.bold)
+                .padding()
             
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(spacing: 20) {
+                    ContentViewCards() // Keeps your original structure
+                }
+                .padding(.top)
+            }
         }
         .navigationTitle("Book Activities")
     }
@@ -91,52 +100,35 @@ struct ContentViewCards: View {
     ]
     let options2 = [
         ScrollableOption(image: "apple.meditate", text: "Meditate"),
-
         ScrollableOption(image: "brain", text: "Test"),
         ScrollableOption(image: "pill", text: "Test"),
         ScrollableOption(image: "cross", text: "Test"),
         ScrollableOption(image: "brain", text: "Hopefully"),
         ScrollableOption(image: "pill", text: "This"),
         ScrollableOption(image: "cross", text: "Works"),
-
         ScrollableOption(image: "heart", text: "Test"),
     ]
     
     var body: some View {
         VStack(spacing: 0) {
-            // Fixed title at the top
-            Text("Book Activities")
-                .font(.system(size: 100))
-                .fontWeight(.bold)
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(Color.white)
-            
-            // Scrollable content
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack(spacing: 20) {
-                    HorizontalScrollBar(title: "Workout activities", options: options) { selectedOption in
-                        print("Selected Outdoor: \(selectedOption.text)")
-                    }
-                    HorizontalScrollBar(title: "Outdoor Activities", options: options1) { selectedOption in
-                        print("Selected Indoor: \(selectedOption.text)")
-                    }
-                    HorizontalScrollBar(title: "Wellness", options: options2) { selectedOption in
-                        print("Selected Wellness: \(selectedOption.text)")
-                    }
-                    HorizontalScrollBar(title: "Farm Tours", options: options1) { selectedOption in
-                        print("Selected Tour: \(selectedOption.text)")
-                    }
-                }
-                .padding(.top)
+            HorizontalScrollBar(title: "Workout Activities", options: options) { selectedOption in
+                print("Selected Outdoor: \(selectedOption.text)")
+            }
+            HorizontalScrollBar(title: "Outdoor Activities", options: options1) { selectedOption in
+                print("Selected Indoor: \(selectedOption.text)")
+            }
+            HorizontalScrollBar(title: "Wellness", options: options2) { selectedOption in
+                print("Selected Wellness: \(selectedOption.text)")
+            }
+            HorizontalScrollBar(title: "Farm Tours", options: options1) { selectedOption in
+                print("Selected Tour: \(selectedOption.text)")
             }
         }
-        .edgesIgnoringSafeArea(.top) // This ensures the title extends to the top of the screen
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentViewCards()
+#Preview {
+    NavigationStack {
+        BookActivities()
     }
 }

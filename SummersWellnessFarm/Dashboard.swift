@@ -49,15 +49,16 @@ struct CustomButtonStyle: ViewModifier{
             .background(Color.green)
             .cornerRadius(10)
             .shadow(radius:5)
-
-struct Dashboard: View {
-    var body: some View {
-        Text("Dashboard")
-            .font(.largeTitle)
-                .padding()
-
     }
-}
+        struct Dashboard: View {
+            var body: some View {
+                Text("Dashboard")
+                    .font(.largeTitle)
+                    .padding()
+                
+            }
+        }
+    }
 
 #Preview {
     Dashboard()
