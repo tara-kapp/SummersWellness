@@ -25,6 +25,7 @@ struct Dashboard: View {
         
             // Explore the farm button
             NavigationLink(destination: ExploreTheFarmNav()){
+            NavigationLink(destination: ExploreTheFarm()){
                 Text("Explore The Farm")
                     .modifier(CustomButtonStyle())
             }
@@ -39,6 +40,7 @@ struct Dashboard: View {
                 Text("Farm to Table")
                     .modifier(CustomButtonStyle())
             }
+
     }
         .navigationTitle("Dashboard")
     }
@@ -54,6 +56,7 @@ struct CustomButtonStyle: ViewModifier{
             .background(Color.green)
             .cornerRadius(10)
             .shadow(radius:5)
+
     }
         struct Dashboard: View {
             var body: some View {
@@ -69,3 +72,16 @@ struct CustomButtonStyle: ViewModifier{
         }
     }
 
+
+struct Dashboard: View {
+    var body: some View {
+        Text("Dashboard")
+            .font(.largeTitle)
+                .padding()
+
+    }
+}
+
+#Preview {
+    Dashboard()
+}

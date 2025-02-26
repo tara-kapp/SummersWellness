@@ -84,6 +84,11 @@ struct ExploreTheFarmNav: View {
     var body: some View {
         VStack{
             ExploreTheFarm()
+
+struct ExploreTheFarm: View {
+    var body: some View {
+        VStack{
+            
         }
         .navigationTitle("Explore the Farm")
     }

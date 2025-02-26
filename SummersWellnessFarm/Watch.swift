@@ -11,7 +11,9 @@ struct Watch: View{
     var body: some View{
         VStack{
             WatchIntegrationView()
+        }            
         }
+        .navigationTitle("Watch Integration")
     }
 }
 
@@ -60,4 +62,6 @@ struct WatchIntegrationView: View {
         }
     }
 }
-
+#Preview {
+    WatchIntegrationView()
+}
