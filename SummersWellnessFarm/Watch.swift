@@ -10,11 +10,13 @@ import SwiftUI
 struct Watch: View{
     var body: some View{
         VStack{
-            
+            WatchIntegrationView()
         }
-        .navigationTitle("Watch Integration")
+
+        }
     }
-}
+
+
 
 struct WatchIntegrationView: View {
     var body: some View {

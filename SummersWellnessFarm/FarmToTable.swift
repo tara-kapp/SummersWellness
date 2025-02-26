@@ -86,3 +86,10 @@ struct FarmToTableView_Previews: PreviewProvider {
         FarmToTableView()
     }
 }
+
+#Preview {
+    NavigationStack {
+        FarmToTableView()
+    }
+}
+
