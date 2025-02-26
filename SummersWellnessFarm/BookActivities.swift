@@ -22,7 +22,6 @@ struct BookActivities: View {
                 .padding(.top)
             }
         }
-        .navigationTitle("Book Activities")
     }
 }
 

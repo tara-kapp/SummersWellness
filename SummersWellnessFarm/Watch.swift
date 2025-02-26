@@ -12,7 +12,7 @@ struct Watch: View{
         VStack{
             WatchIntegrationView()
         }
-        .navigationTitle("Watch Integration")
+
         }
     }
 
