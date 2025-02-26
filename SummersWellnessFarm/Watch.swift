@@ -12,6 +12,7 @@ struct Watch: View{
         VStack{
             WatchIntegrationView()
         }
+
         }
     }
 

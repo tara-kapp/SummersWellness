@@ -15,6 +15,7 @@ struct Dashboard: View {
             Text("Dashboard")
                 .font(.largeTitle)
                 .padding()
+
             SectionView(title: "Personal Info", content: """
             - Name: Jane Doe
             - Room Number: 301
@@ -26,12 +27,13 @@ struct Dashboard: View {
             - Outdoor Yoga: 2/29 at 8:00am
             - Massage: 2/29 at 11:00am
             """)
+
             // Activities button
             NavigationLink(destination: BookActivities()){
                 Text("Book Activities")
                     .modifier(CustomButtonStyle())
             }
-            
+          
             // Explore the farm button
             NavigationLink(destination: ExploreTheFarm()){
                 Text("Explore The Farm")
@@ -52,6 +54,7 @@ struct Dashboard: View {
                 Text("Personalized Recommendations")
                     .modifier(CustomButtonStyle())
             }
+
     }
         .navigationTitle("Dashboard")
     }
