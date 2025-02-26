@@ -22,15 +22,7 @@ struct BookActivities: View {
                 .padding(.top)
             }
         }
-      
-// Navigation Link
-struct BookActivities: View {
-    var body: some View {
-        VStack{
-            
-        }
         .navigationTitle("Book Activities")
-
     }
 }
 
@@ -95,8 +87,7 @@ struct ContentViewCards: View {
         ScrollableOption(image: "figure.core.training", text: "Core"),
         ScrollableOption(image: "figure.cross.training", text: "Cross Fit"),
         ScrollableOption(image: "figure.flexibility", text: "Stretching"),
-
-        ScrollableOption(image: "figure.cross.training", text: "Strength")
+        ScrollableOption(image: "figure.strength.training", text: "Strength")
     ]
     let options1 = [
         ScrollableOption(image: "car", text: "Test"),
@@ -120,7 +111,6 @@ struct ContentViewCards: View {
     
     var body: some View {
         VStack(spacing: 0) {
-
             HorizontalScrollBar(title: "Workout Activities", options: options) { selectedOption in
                 print("Selected Outdoor: \(selectedOption.text)")
             }
@@ -137,38 +127,8 @@ struct ContentViewCards: View {
     }
 }
 
-            Text("Book Activities")
-                .font(.system(size: 100))
-                .fontWeight(.bold)
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(Color.white)
-            
-            // Scrollable content
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack(spacing: 20) {
-                    HorizontalScrollBar(title: "Workout activities", options: options) { selectedOption in
-                        print("Selected Outdoor: \(selectedOption.text)")
-                    }
-                    HorizontalScrollBar(title: "Outdoor Activities", options: options1) { selectedOption in
-                        print("Selected Indoor: \(selectedOption.text)")
-                    }
-                    HorizontalScrollBar(title: "Wellness", options: options2) { selectedOption in
-                        print("Selected Wellness: \(selectedOption.text)")
-                    }
-                    HorizontalScrollBar(title: "Farm Tours", options: options1) { selectedOption in
-                        print("Selected Tour: \(selectedOption.text)")
-                    }
-                }
-                .padding(.top)
-            }
-        }
-        .edgesIgnoringSafeArea(.top)
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentViewCards()
+#Preview {
+    NavigationStack {
+        BookActivities()
     }
 }

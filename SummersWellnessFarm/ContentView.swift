@@ -3,7 +3,6 @@
 //  SummersWellnessFarm
 //
 //  Created by Grace Beard on 2/16/25.
-// test
 
 import SwiftUI
 
@@ -33,7 +32,3 @@ struct ContentView: View {
 
     }
 }
-
-//#Preview {
-//    ContentView()
-//}
