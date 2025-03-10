@@ -18,13 +18,12 @@ struct Dashboard: View {
             """)
             
             SectionView(title: "Booked Activities", content: bookedActivitiesText())
-            
-            // Activities button
+
             NavigationLink(destination: BookActivities()){
                 Text("Book Activities")
                     .modifier(CustomButtonStyle())
             }
-            
+
             // Explore the farm button
             NavigationLink(destination: ExploreTheFarm()){
                 Text("Explore The Farm")
@@ -45,6 +44,7 @@ struct Dashboard: View {
                 Text("Personalized Recommendations")
                     .modifier(CustomButtonStyle())
             }
+
         }
         .navigationTitle("Dashboard")
     }
@@ -67,6 +67,9 @@ struct Dashboard: View {
                 "- \(booking.activityName) on \(booking.selectedDay) at \(booking.selectedTime) for \(booking.bookedSlots) people"
             }.joined(separator: "\n")
         }
+
+    }
+    }
 }
 
 struct CustomButtonStyle: ViewModifier{
@@ -85,4 +88,5 @@ struct CustomButtonStyle: ViewModifier{
 #Preview {
     Dashboard()
         .modelContainer(for: Booking.self)
+
 }

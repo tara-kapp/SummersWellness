@@ -241,5 +241,6 @@ struct BookingView: View {
     NavigationStack {
         BookActivities()
             .modelContainer(for: [Booking.self, Activity.self])
+
     }
 }
