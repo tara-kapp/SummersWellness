@@ -1,15 +1,10 @@
-//
-//  Dashboard.swift
-//  SummersWellnessFarm
-//
-//  Created by Grace Beard on 2/19/25.
-//
-
 import SwiftUI
-
-
+import SwiftData
 
 struct Dashboard: View {
+    @Environment(\.modelContext) private var modelContext
+    @Query var bookings: [Booking]
+
     var body: some View {
         VStack{
             Text("Dashboard")
@@ -22,18 +17,13 @@ struct Dashboard: View {
             - Email: example@summerswellness.com
             """)
             
-            SectionView(title: "Booked Activities", content: """
-            - Farm to Table Experience: 2/28 at 7:00pm
-            - Outdoor Yoga: 2/29 at 8:00am
-            - Massage: 2/29 at 11:00am
-            """)
+            SectionView(title: "Booked Activities", content: bookedActivitiesText())
 
-            // Activities button
             NavigationLink(destination: BookActivities()){
                 Text("Book Activities")
                     .modifier(CustomButtonStyle())
             }
-          
+
             // Explore the farm button
             NavigationLink(destination: ExploreTheFarm()){
                 Text("Explore The Farm")
@@ -55,8 +45,30 @@ struct Dashboard: View {
                     .modifier(CustomButtonStyle())
             }
 
-    }
+        }
         .navigationTitle("Dashboard")
+    }
+    func fetchBookings() {
+            // Reload bookings from the model context
+            do {
+                try modelContext.save()
+            } catch {
+                print("Error saving context: \(error)")
+            }
+        }
+    func bookedActivitiesText() -> String {
+            if bookings.isEmpty {
+                return "You have no booked activities."
+            }
+
+            let sortedBookings = bookings.sorted { $0.selectedTime < $1.selectedTime }
+
+            return sortedBookings.map { booking in
+                "- \(booking.activityName) on \(booking.selectedDay) at \(booking.selectedTime) for \(booking.bookedSlots) people"
+            }.joined(separator: "\n")
+        }
+
+    }
     }
 }
 
@@ -71,16 +83,10 @@ struct CustomButtonStyle: ViewModifier{
             .cornerRadius(10)
             .shadow(radius:5)
     }
-        struct Dashboard: View {
-            var body: some View {
-                Text("Dashboard")
-                    .font(.largeTitle)
-                    .padding()
-                
-            }
-        }
-    }
+}
 
 #Preview {
     Dashboard()
+        .modelContainer(for: Booking.self)
+
 }

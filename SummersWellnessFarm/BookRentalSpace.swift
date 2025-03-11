@@ -1,16 +1,16 @@
 //
-//  Watch.swift
+//  BookRentalSpace.swift
 //  SummersWellnessFarm
 //
-//  Created by Grace Beard on 2/21/25.
+//  Created by Grace Beard on 2/27/25.
 //
 
 import SwiftUI
-// Navigation Link
-struct Watch: View{
+
+struct RentalSpace: View{
     var body: some View{
         VStack{
-            WatchIntegrationView()
+            RentalSpaceView()
         }
 
         }
@@ -18,32 +18,32 @@ struct Watch: View{
 
 
 
-struct WatchIntegrationView: View {
+struct RentalSpaceView: View {
     var body: some View {
         VStack(spacing: 20) {
-            Text("Watch Integration")
+            Text("Book a Renal Space")
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .padding(.top, 30)
             
             Button(action: {
-                print("Fitbit integration tapped")
+                print("Conference Room integration tapped")
             }) {
-                Text("Fitbit")
+                Text("Conference Room")
                     .modifier(CustomButtonStyle())
             }
             
             Button(action: {
-                print("Garmin integration tapped")
+                print("Restaurant integration tapped")
             }) {
-                Text("Garmin")
+                Text("Restaurant")
                     .modifier(CustomButtonStyle())
             }
             
             Button(action: {
-                print("Apple Watch integration tapped")
+                print("Ballroom integration tapped")
             }) {
-                Text("Apple Watch")
+                Text("Ballroom")
                     .modifier(CustomButtonStyle())
             }
             
@@ -52,5 +52,6 @@ struct WatchIntegrationView: View {
     }
 }
 #Preview {
-    WatchIntegrationView()
+    RentalSpaceView()
 }
+

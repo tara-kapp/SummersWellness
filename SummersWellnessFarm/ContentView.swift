@@ -23,6 +23,14 @@ struct ContentView: View {
                 Text("Personal Dashboard")
                     .modifier(CustomButtonStyle())
             }
+            NavigationLink(destination: WeddingDashboard()){
+                Text("Wedding Dashboard")
+                    .modifier(CustomButtonStyle())
+            }
+            NavigationLink(destination: WeddingDashboard()){
+                Text("Corporate Dashboard")
+                    .modifier(CustomButtonStyle())
+            }
                     }
 
         Text("Summers Wellness Farm")

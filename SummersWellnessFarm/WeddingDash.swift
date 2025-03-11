@@ -1,0 +1,49 @@
+//
+//  WeddingDash.swift
+//  SummersWellnessFarm
+//
+//  Created by Grace Beard on 2/27/25.
+//
+
+import SwiftUI
+
+
+
+struct WeddingDashboard: View {
+    var body: some View {
+        VStack{
+            Text("Dashboard")
+                .font(.largeTitle)
+                .padding()
+
+            SectionView(title: "Group Info", content: """
+            - Primary Contact Name: Jane Doe
+            - Email: example@summerswellness.com
+            - Group Size: 100 Guests
+            """)
+            
+
+            NavigationLink(destination: LargeBookActivities()){
+                Text("Book Activities")
+                    .modifier(CustomButtonStyle())
+            }
+          
+            // Explore the farm button
+            NavigationLink(destination: ExploreTheFarm()){
+                Text("Explore The Farm")
+                    .modifier(CustomButtonStyle())
+            }
+            
+            NavigationLink(destination: RentalSpace()){
+                Text("Book Rental Space")
+                    .modifier(CustomButtonStyle())
+            }
+
+    }
+        .navigationTitle("Dashboard")
+    }
+}
+
+#Preview {
+    WeddingDashboard()
+}
