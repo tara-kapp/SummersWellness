@@ -6,7 +6,8 @@
 //
 import SwiftUI
 
-struct RentalSpace: Identifiable {
+// Renamed to CorporateSpace
+struct CorporateSpace: Identifiable {
     let id = UUID()
     let name: String
     let description: String
@@ -14,15 +15,15 @@ struct RentalSpace: Identifiable {
     let imageName: String
 }
 
-struct BookingView: View {
+struct CorporateBookingView: View {
     @State private var selectedDate = Date()
-    @State private var selectedSpace: RentalSpace?
+    @State private var selectedSpace: CorporateSpace?
     @State private var showingConfirmation = false
     
-    let rentalSpaces: [RentalSpace] = [
-        RentalSpace(name: "Executive Barn Suite", description: "A stylish barn-inspired suite with a private meeting area, high-speed Wi-Fi, and farm views.", pricePerDay: 300, imageName: "executive-barn-suite"),
-        RentalSpace(name: "Conference Lodge", description: "A fully equipped conference space with AV technology, seating for 20, and a cozy fireplace.", pricePerDay: 250, imageName: "conference-lodge"),
-        RentalSpace(name: "Farmhouse Boardroom", description: "A charming farmhouse-style boardroom with a large table, whiteboard, and scenic views", pricePerDay: 200, imageName: "farmhouse")
+    let corporateSpaces: [CorporateSpace] = [
+        CorporateSpace(name: "Executive Barn Suite", description: "A stylish barn-inspired suite with a private meeting area, high-speed Wi-Fi, and farm views.", pricePerDay: 300, imageName: "executive-barn-suite"),
+        CorporateSpace(name: "Conference Lodge", description: "A fully equipped conference space with AV technology, seating for 20, and a cozy fireplace.", pricePerDay: 250, imageName: "conference-lodge"),
+        CorporateSpace(name: "Farmhouse Boardroom", description: "A charming farmhouse-style boardroom with a large table, whiteboard, and scenic views.", pricePerDay: 200, imageName: "farmhouse")
     ]
     
     var body: some View {
@@ -40,14 +41,14 @@ struct BookingView: View {
                 .cornerRadius(10)
                 .shadow(radius: 5)
             
-            // List of Rental Spaces
+            // List of Corporate Spaces
             Text("Available Spaces")
                 .font(.title2)
                 .fontWeight(.bold)
                 .padding(.horizontal)
             
-            List(rentalSpaces) { space in
-                RentalSpaceRow(space: space, isSelected: selectedSpace?.id == space.id)
+            List(corporateSpaces) { space in
+                CorporateSpaceRow(space: space, isSelected: selectedSpace?.id == space.id)
                     .onTapGesture {
                         selectedSpace = space
                     }
@@ -94,8 +95,8 @@ struct BookingView: View {
     }
 }
 
-struct RentalSpaceRow: View {
-    let space: RentalSpace
+struct CorporateSpaceRow: View {
+    let space: CorporateSpace
     let isSelected: Bool
     
     var body: some View {
@@ -107,7 +108,7 @@ struct RentalSpaceRow: View {
                 .cornerRadius(10)
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
-                        .stroke(isSelected ? Color.blue : Color.clear, lineWidth: 2)
+                        .stroke(isSelected ? Color.green : Color.clear, lineWidth: 2)
                 )
             
             VStack(alignment: .leading, spacing: 5) {
@@ -124,13 +125,13 @@ struct RentalSpaceRow: View {
             Spacer()
         }
         .padding()
-        .background(isSelected ? Color.blue.opacity(0.1) : Color(.systemBackground))
+        .background(isSelected ? Color.green.opacity(0.1) : Color(.systemBackground))
         .cornerRadius(10)
     }
 }
 
-struct BookingView_Previews: PreviewProvider {
+struct CorporateBookingView_Previews: PreviewProvider {
     static var previews: some View {
-        BookingView()
+        CorporateBookingView()
     }
 }

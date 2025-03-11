@@ -51,6 +51,18 @@ struct RentalSpaceView: View {
         }
     }
 }
+struct CustomButtonStyle: ViewModifier{
+    func body(content: Content) -> some View{
+        content
+            .font(.headline)
+            .foregroundColor(.white)
+            .padding()
+            .frame(maxWidth: 200)
+            .background(Color.green)
+            .cornerRadius(10)
+            .shadow(radius:5)
+    }
+}
 #Preview {
     RentalSpaceView()
 }
