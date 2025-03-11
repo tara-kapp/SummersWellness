@@ -34,7 +34,7 @@ struct WeddingDashboard: View {
                     .modifier(CustomButtonStyle())
             }
             
-            NavigationLink(destination: RentalSpace()){
+            NavigationLink(destination: CorporateBookingView()){
                 Text("Book Rental Space")
                     .modifier(CustomButtonStyle())
             }
