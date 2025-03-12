@@ -29,6 +29,12 @@ struct Dashboard: View {
                     .modifier(CustomButtonStyle())
             }
             
+            // Quiz button
+            NavigationLink(destination: ActivityRecs()){
+                Text("Find Activity Recommendations")
+                    .modifier(CustomButtonStyle())
+            }
+            
             // Watch integration button
             NavigationLink(destination: Watch()){
                 Text("SmartWatch Integration")
@@ -49,16 +55,17 @@ struct CustomButtonStyle: ViewModifier{
             .background(Color.green)
             .cornerRadius(10)
             .shadow(radius:5)
-
-struct Dashboard: View {
-    var body: some View {
-        Text("Dashboard")
-            .font(.largeTitle)
-                .padding()
-
     }
-}
-
-#Preview {
-    Dashboard()
+    struct Dashboard: View {
+        var body: some View {
+            Text("Dashboard")
+                .font(.largeTitle)
+                .padding()
+            
+        }
+    }
+    
+    #Preview {
+        Dashboard()
+    }
 }

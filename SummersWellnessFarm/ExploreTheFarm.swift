@@ -59,7 +59,7 @@ struct ExploreTheFarm: View {
             Spacer() //push everything up
 
             //MAP
-            Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true)
+      //      Map(coordinateRegion: $region, interactionModes: .all, showsUserLocation: true)
                 .edgesIgnoringSafeArea(.bottom) //map fill screen
                 .frame(maxHeight: .infinity)
                 .padding(.top, 20)
@@ -76,11 +76,8 @@ struct ExploreTheFarm_Previews: PreviewProvider {
 
 
 
-
-
-
 // Navigation Link
-struct ExploreTheFarm: View {
+struct ExploreTheFarmNav: View {
     var body: some View {
         VStack{
             
