@@ -168,6 +168,10 @@ struct BookingView: View {
                 .fontWeight(.bold)
                 .padding()
             
+            Text("\(activity.activityDescription)")
+                .fontWeight(.bold)
+                .padding()
+            
             Picker("Select Day", selection: $selectedDay) {
                 Text("Select a Day").tag("Select a Day")
                 ForEach(activity.daysAvailable, id: \.self) { day in
