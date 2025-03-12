@@ -16,7 +16,7 @@ struct ActivityRecs: View {
         "Outdoor & Nature",
         "Culinary & Farm-to-Table",
         "Adventure & Outdoor Sports",
-        "Corporate & Events"
+        //"Corporate & Events"
     ]
     
     var body: some View {
