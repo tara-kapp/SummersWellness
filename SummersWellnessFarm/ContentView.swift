@@ -6,6 +6,19 @@
 
 import SwiftUI
 
+struct CustomButtonStyle: ViewModifier{
+    func body(content: Content) -> some View{
+        content
+            .font(.headline)
+            .foregroundColor(.white)
+            .padding()
+            .frame(maxWidth: 200)
+            .background(Color.green)
+            .cornerRadius(10)
+            .shadow(radius:5)
+    }
+}
+
 struct ContentView: View {
     var body: some View {
 
@@ -21,6 +34,14 @@ struct ContentView: View {
             // Dashboard button
             NavigationLink(destination: Dashboard()){
                 Text("Personal Dashboard")
+                    .modifier(CustomButtonStyle())
+            }
+            NavigationLink(destination: WeddingDashboard()){
+                Text("Wedding Dashboard")
+                    .modifier(CustomButtonStyle())
+            }
+            NavigationLink(destination: WeddingDashboard()){
+                Text("Corporate Dashboard")
                     .modifier(CustomButtonStyle())
             }
                     }
