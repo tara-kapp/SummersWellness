@@ -46,6 +46,7 @@ struct Dashboard: View {
                 Text("Food Dashboard")
                     .modifier(CustomButtonStyle())
             }
+            
             NavigationLink(destination: Recommendations()){
                 Text("Personalized Recommendations")
                     .modifier(CustomButtonStyle())
