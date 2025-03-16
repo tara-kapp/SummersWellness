@@ -46,6 +46,7 @@ struct Dashboard: View {
                 Text("Food Dashboard")
                     .modifier(CustomButtonStyle())
             }
+            
             NavigationLink(destination: Recommendations()){
                 Text("Personalized Recommendations")
                     .modifier(CustomButtonStyle())
@@ -54,8 +55,8 @@ struct Dashboard: View {
         }
         .navigationTitle("Dashboard")
     }
-}
-
+    
+    
     func fetchBookings() {
         // Reload bookings from the model context
         do {
@@ -75,22 +76,8 @@ struct Dashboard: View {
             "- \(booking.activityName) on \(booking.selectedDay) at \(booking.selectedTime) for \(booking.bookedSlots) people"
         }.joined(separator: "\n")
     }
-    
-    
-    
-    struct CustomButtonStyle: ViewModifier{
-        func body(content: Content) -> some View{
-            content
-                .font(.headline)
-                .foregroundColor(.white)
-                .padding()
-                .frame(maxWidth: 200)
-                .background(Color.green)
-                .cornerRadius(10)
-                .shadow(radius:5)
-        }
-    }
 }
+    
     
 #Preview {
     Dashboard()
