@@ -35,6 +35,12 @@ struct FoodDash: View {
                     .modifier(CustomButtonStyle())
             }
             
+            NavigationLink(destination: FoodFormView(viewModel: GuestPreferencesViewModel())) {
+                Text("Food Preferences")
+                    .modifier(CustomButtonStyle())
+            }
+
+            
     }
         .navigationTitle("Dashboard")
     }
