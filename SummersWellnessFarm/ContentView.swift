@@ -20,36 +20,37 @@ struct CustomButtonStyle: ViewModifier{
 }
 
 struct ContentView: View {
-    var body: some View {
-
-
+    @State private var selectedDashboard: String?
+    @State private var loggedInUser: User
     
-        NavigationStack{
-            Text("Summers Wellness Farm")
-                .font(.largeTitle)
+    var body: some View {
+        
+        
+        
+        VStack {
+            Text("Welcome, \(loggedInUser.name)!")
+                .font(.title)
                 .padding()
-            Text("Welcome Name!")
             
-            
-            // Dashboard button
-            NavigationLink(destination: Dashboard()){
-                Text("Personal Dashboard")
-                    .modifier(CustomButtonStyle())
-            }
-            NavigationLink(destination: WeddingDashboard()){
-                Text("Wedding Dashboard")
-                    .modifier(CustomButtonStyle())
-            }
-            NavigationLink(destination: WeddingDashboard()){
-                Text("Corporate Dashboard")
-                    .modifier(CustomButtonStyle())
-            }
-                    }
-
-        Text("Summers Wellness Farm")
-            .font(.largeTitle)
+            Text("Choose Your Dashboard")
+                .font(.title2)
                 .padding()
-        Text("Welcome Name!")
-
-    }
-}
+            
+            Button("Personal Dashboard") {
+                selectedDashboard = "Personal"
+            }
+            .modifier(CustomButtonStyle())
+            .padding()
+            
+            Button("Corporate Dashboard") {
+                selectedDashboard = "Corporate"
+            }
+            .modifier(CustomButtonStyle())
+            .padding()
+            
+            Button("Wedding Dashboard") {
+                selectedDashboard = "Wedding"
+            }
+            .modifier(CustomButtonStyle())
+            .padding()
+        }}}
