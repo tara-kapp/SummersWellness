@@ -18,6 +18,7 @@ struct LoginView: View {
     @State private var loggedInUser: User?
     @State private var isShowingSignup = false
     @State private var selectedDashboard: DashboardType?
+    @State private var navigateToDashboard = false
 
     var body: some View {
         NavigationStack {
@@ -34,33 +35,30 @@ struct LoginView: View {
                     // Select Dashboard Type
                     VStack {
                         Button("Personal Dashboard") {
+                            navigateToDashboard = true
                             selectedDashboard = .personal
                         }
                         .buttonStyle(.borderedProminent)
                         .padding()
 
                         Button("Corporate Dashboard") {
+                            navigateToDashboard = true
                             selectedDashboard = .corporate
                         }
                         .buttonStyle(.borderedProminent)
                         .padding()
 
                         Button("Wedding Dashboard") {
+                            navigateToDashboard = true
                             selectedDashboard = .wedding
                         }
                         .buttonStyle(.borderedProminent)
                         .padding()
                     }
-
-                    // Navigate to Dashboard once selected
-                    if let dashboardType = selectedDashboard {
-                        NavigationLink(
-                            destination: Dashboard(viewModel: DashboardViewModel(user: user, dashboardType: dashboardType))
-                        ) {
-                            Text("Go to \(dashboardType.rawValue) Dashboard")
-                                .padding()
-                    }
-                        .padding()
+                                .navigationDestination(isPresented: $navigateToDashboard) {
+                                    if let dashboardType = selectedDashboard {
+                                        Dashboard(viewModel: DashboardViewModel(user: user, dashboardType: dashboardType))
+                                    }
                     }
                 } else {
                     // Login Form
