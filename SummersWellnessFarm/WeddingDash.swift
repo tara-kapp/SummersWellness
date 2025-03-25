@@ -12,7 +12,7 @@ import SwiftUI
 struct WeddingDashboard: View {
     var body: some View {
         VStack{
-            Text("Dashboard")
+            Text("Wedding Dashboard")
                 .font(.largeTitle)
                 .padding()
 

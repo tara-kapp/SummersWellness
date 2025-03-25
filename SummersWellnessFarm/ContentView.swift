@@ -40,10 +40,16 @@ struct ContentView: View {
                 Text("Wedding Dashboard")
                     .modifier(CustomButtonStyle())
             }
-            NavigationLink(destination: WeddingDashboard()){
+            NavigationLink(destination: CorporateDashboard()){
                 Text("Corporate Dashboard")
                     .modifier(CustomButtonStyle())
             }
+            // Temporarily placed here. 
+            NavigationLink(destination: UserPreferencesView()){
+                Text("User Preferences AI Quiz")
+                    .modifier(CustomButtonStyle())
+            }
+            
                     }
 
         Text("Summers Wellness Farm")
