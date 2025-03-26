@@ -10,6 +10,7 @@ import SwiftUI
 
 
 struct WeddingDashboard: View {
+    let viewModel: DashboardViewModel
     var body: some View {
         VStack{
             Text("Dashboard")
@@ -54,6 +55,3 @@ struct WeddingDashboard: View {
     }
 }
 
-#Preview {
-    WeddingDashboard()
-}

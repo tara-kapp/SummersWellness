@@ -33,33 +33,16 @@ struct LoginView: View {
                         .padding(.top)
 
                     // Select Dashboard Type
-                    VStack {
-                        Button("Personal Dashboard") {
-                            navigateToDashboard = true
-                            selectedDashboard = .personal
+                    // Direct Navigation
+                    ForEach(DashboardType.allCases, id: \.self) { type in
+                        NavigationLink(value: type) {
+                            Text("\(type.rawValue) Dashboard")
                         }
-                        .buttonStyle(.borderedProminent)
-                        .padding()
-
-                        Button("Corporate Dashboard") {
-                            navigateToDashboard = true
-                            selectedDashboard = .corporate
-                        }
-                        .buttonStyle(.borderedProminent)
-                        .padding()
-
-                        Button("Wedding Dashboard") {
-                            navigateToDashboard = true
-                            selectedDashboard = .wedding
-                        }
-                        .buttonStyle(.borderedProminent)
-                        .padding()
+                            .buttonStyle(.borderedProminent)
+                            .padding()
                     }
-                                .navigationDestination(isPresented: $navigateToDashboard) {
-                                    if let dashboardType = selectedDashboard {
-                                        Dashboard(viewModel: DashboardViewModel(user: user, dashboardType: dashboardType))
-                                    }
-                    }
+
+                    
                 } else {
                     // Login Form
                     Text("Login to Your Account")
@@ -93,9 +76,27 @@ struct LoginView: View {
                 }
             }
             .padding()
-            .navigationDestination(isPresented: $isShowingSignup) {
-                SignupView()
+            
+            .navigationDestination(for: DashboardType.self) { type in
+                if let user = loggedInUser {
+                    switch type {
+                    case .personal:
+                        Dashboard(viewModel: DashboardViewModel(user: user, dashboardType: type))
+                    case .corporate:
+                        CorporateDashboard(viewModel: DashboardViewModel(user: user, dashboardType: type))
+                    case .wedding:
+                        WeddingDashboard(viewModel: DashboardViewModel(user: user, dashboardType: type))
+                    }
+                } else {
+                    // Optional: fallback if user somehow becomes nil
+                    Text("Error: No user found")
+                }
             }
+
+
+                .navigationDestination(isPresented: $isShowingSignup) {
+                    SignupView()
+                }
         }
     }
 

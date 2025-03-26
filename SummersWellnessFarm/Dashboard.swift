@@ -77,11 +77,4 @@ struct Dashboard: View {
         }.joined(separator: "\n")
     }
 }
-    
-    
-//#Preview {
-  //  Dashboard(user: <#User#>)
-    //    .modelContainer(for: Booking.self)
-
-//}
 

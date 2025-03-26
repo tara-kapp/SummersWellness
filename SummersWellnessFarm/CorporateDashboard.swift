@@ -9,6 +9,8 @@ import SwiftUI
 import SwiftData
 
 struct CorporateDashboard: View {
+    let viewModel: DashboardViewModel
+    
     var body: some View {
         VStack{
             Text("Corporate Dashboard")
@@ -41,8 +43,4 @@ struct CorporateDashboard: View {
     }
         .navigationTitle("Dashboard")
     }
-}
-
-#Preview {
-    CorporateDashboard()
 }

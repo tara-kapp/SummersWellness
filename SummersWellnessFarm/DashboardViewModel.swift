@@ -20,12 +20,10 @@ class DashboardViewModel: ObservableObject {
     }
 }
 
-enum DashboardType: String, Codable, Identifiable {
-    case personal
-    case corporate
-    case wedding
-    
-    var id: String { self.rawValue }
+enum DashboardType: String, CaseIterable, Hashable {
+    case personal = "Personal"
+    case corporate = "Corporate"
+    case wedding = "Wedding"
 }
 
 
