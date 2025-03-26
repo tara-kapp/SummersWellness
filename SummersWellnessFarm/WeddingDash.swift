@@ -13,7 +13,7 @@ struct WeddingDashboard: View {
     let viewModel: DashboardViewModel
     var body: some View {
         VStack{
-            Text("Dashboard")
+            Text("Wedding Dashboard")
                 .font(.largeTitle)
                 .padding()
 
