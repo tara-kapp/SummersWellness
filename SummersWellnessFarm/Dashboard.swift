@@ -42,8 +42,13 @@ struct Dashboard: View {
                     .modifier(CustomButtonStyle())
             }
             
-            NavigationLink(destination: FoodDash()){
+            NavigationLink(destination: FoodPreferencesView()){
                 Text("Food Dashboard")
+                    .modifier(CustomButtonStyle())
+            }
+            
+            NavigationLink(destination: CalorieTrackerForm()){
+                Text("Health")
                     .modifier(CustomButtonStyle())
             }
             
