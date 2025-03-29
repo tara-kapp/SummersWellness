@@ -30,12 +30,6 @@ struct Dashboard: View {
                     .modifier(CustomButtonStyle())
             }
             
-            // Quiz button
-            NavigationLink(destination: ActivityRecs()){
-                Text("Find Activity Recommendations")
-                    .modifier(CustomButtonStyle())
-            }
-            
             // Watch integration button
             NavigationLink(destination: Watch()){
                 Text("SmartWatch Integration")
@@ -54,8 +48,6 @@ struct Dashboard: View {
         }
         .navigationTitle("Dashboard")
     }
-}
-
     func fetchBookings() {
         // Reload bookings from the model context
         do {
@@ -95,6 +87,6 @@ struct Dashboard: View {
 #Preview {
     Dashboard()
         .modelContainer(for: Booking.self)
-
+    
 }
 
