@@ -5,6 +5,7 @@ struct Dashboard: View {
     @Environment(\.modelContext) private var modelContext
     @Query var bookings: [Booking]
     var viewModel: DashboardViewModel // Observe the view model
+    
     var body: some View {
         VStack{
             Text("Dashboard")
@@ -57,6 +58,11 @@ struct Dashboard: View {
                     .modifier(CustomButtonStyle())
             }
             
+            NavigationLink(destination: UserPreferencesView()){
+                Text("User Preferences AI Quiz")
+                    .modifier(CustomButtonStyle())
+            }
+            
         }
         .navigationTitle("Dashboard")
     }
@@ -70,6 +76,7 @@ struct Dashboard: View {
             print("Error saving context: \(error)")
         }
     }
+    
     func bookedActivitiesText() -> String {
         if bookings.isEmpty {
             return "You have no booked activities."
@@ -82,4 +89,3 @@ struct Dashboard: View {
         }.joined(separator: "\n")
     }
 }
-
