@@ -30,7 +30,7 @@ struct CorporateBookingView: View {
         VStack(alignment: .leading, spacing: 20) {
             // Title
             Text("Book a Space")
-                .font(.largeTitle)
+                .font(.custom("AvenirNext-Regular", size: 34))
                 .fontWeight(.bold)
                 .padding(.horizontal)
             
@@ -43,7 +43,7 @@ struct CorporateBookingView: View {
             
             // List of Corporate Spaces
             Text("Available Spaces")
-                .font(.title2)
+                .font(.custom("AvenirNext-Regular", size: 22))
                 .fontWeight(.bold)
                 .padding(.horizontal)
             
@@ -62,7 +62,7 @@ struct CorporateBookingView: View {
                 }
             }) {
                 Text("Book Now")
-                    .font(.headline)
+                    .font(.custom("AvenirNext-Regular", size: 17))
                     .foregroundColor(.white)
                     .padding()
                     .frame(maxWidth: .infinity)
@@ -113,12 +113,12 @@ struct CorporateSpaceRow: View {
             
             VStack(alignment: .leading, spacing: 5) {
                 Text(space.name)
-                    .font(.headline)
+                    .font(.custom("AvenirNext-Regular", size: 17))
                 Text(space.description)
-                    .font(.subheadline)
+                    .font(.custom("AvenirNext-Regular", size: 15))
                     .foregroundColor(.gray)
                 Text("$\(String(format: "%.2f", space.pricePerDay)) / day")
-                    .font(.subheadline)
+                    .font(.custom("AvenirNext-Regular", size: 15))
                     .foregroundColor(.green)
             }
             

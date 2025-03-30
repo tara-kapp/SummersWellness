@@ -21,7 +21,7 @@ struct ResortPhotoGallery: View {
         NavigationStack {
             VStack {
                 Text("Resort Photo Gallery")
-                    .font(.largeTitle)
+                    .font(.custom("AvenirNext-Regular", size: 34))
                     .fontWeight(.bold)
                     .padding()
 

@@ -18,7 +18,7 @@ struct LargeBookActivities: View {
         NavigationStack {
             VStack {
                 Text("Book Large Group Activities")
-                    .font(.title)
+                    .font(.custom("AvenirNext-Regular", size: 15))
                     .fontWeight(.bold)
                     .padding()
                 
@@ -27,7 +27,7 @@ struct LargeBookActivities: View {
                         ForEach(activitiesByCapacity, id: \.0) { (capacityGroup, activities) in
                             VStack(alignment: .leading) {
                                 Text(capacityGroup)
-                                    .font(.title2)
+                                    .font(.custom("AvenirNext-Regular", size: 22))
                                     .fontWeight(.bold)
                                     .padding(.leading, 16)
                                     .padding(.bottom, 8)

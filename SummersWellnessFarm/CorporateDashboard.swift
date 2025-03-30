@@ -14,7 +14,7 @@ struct CorporateDashboard: View {
     var body: some View {
         VStack{
             Text("Corporate Dashboard")
-                .font(.largeTitle)
+                .font(.custom("AvenirNext-Regular", size: 34))
                 .padding()
 
             SectionView(title: "Group Info", content: """

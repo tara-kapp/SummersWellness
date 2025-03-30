@@ -22,7 +22,7 @@ struct WatchIntegrationView: View {
     var body: some View {
         VStack(spacing: 20) {
             Text("Watch Integration")
-                .font(.largeTitle)
+                .font(.custom("AvenirNext-Regular", size: 34))
                 .fontWeight(.bold)
                 .padding(.top, 30)
             
