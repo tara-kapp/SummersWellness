@@ -18,3 +18,11 @@ struct CustomButtonStyle: ViewModifier{
             .shadow(radius:5)
     }
 }
+
+struct ContentView: View {
+    var body: some View {
+        NavigationStack {
+            LoginView()
+        }
+    }
+}
