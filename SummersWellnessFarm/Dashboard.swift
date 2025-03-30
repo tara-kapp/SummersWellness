@@ -82,7 +82,9 @@ struct Dashboard: View {
         }.joined(separator: "\n")
     }
 }*/
-//comment
+
+
+//Layout 1
 import SwiftUI
 import SwiftData
 
@@ -95,15 +97,22 @@ struct Dashboard: View {
         ScrollView {
             VStack(spacing: 30) {
 
-                // HEADER
+                // LOGO + HEADER
                 VStack(spacing: 8) {
-                    Text("Dashboard")
-                        .font(.custom("AvenirNext-Regular", size: 34))
+                    Image("Logo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 90, height: 90)
+
+                    Text("Personal Dashboard")
+                        .font(.custom("Georgia-BoldItalic", size: 34))
                         .fontWeight(.bold)
-                    Rectangle()
-                        .frame(width: 60, height: 3)
-                        .foregroundColor(Color(red: 195/255, green: 134/255, blue: 39/255))
-                        .cornerRadius(2)
+                        .foregroundColor(Color(red: 62/255, green: 62/255, blue: 36/255).opacity(0.7))
+                        .padding(.top, 30)
+
+                    Capsule()
+                        .frame(width: 60, height: 4)
+                        .foregroundColor(Color(red: 228/255, green: 173/255, blue: 102/255))
                 }
                 .padding(.top)
 
@@ -114,8 +123,16 @@ struct Dashboard: View {
                     - Room Number: 301
                     - Email: \(viewModel.user.email)
                     """)
+                        .padding()
+                        .background(Color(red: 62/255, green: 62/255, blue: 36/255).opacity(0.07))
+                        .cornerRadius(16)
+                        .shadow(color: Color.black.opacity(0.05), radius: 2, x: 0, y: 2)
 
                     SectionView(title: "Booked Activities", content: bookedActivitiesText())
+                        .padding()
+                        .background(Color(red: 62/255, green: 62/255, blue: 36/255).opacity(0.07))
+                        .cornerRadius(16)
+                        .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 4)
                 }
                 .padding(.horizontal)
 
@@ -161,7 +178,8 @@ struct Dashboard: View {
             }
             .frame(maxWidth: .infinity)
         }
-        .navigationTitle("Dashboard")
+        .background(Color.white)
+        //.navigationTitle("Dashboard")
     }
 
     func fetchBookings() {
@@ -184,3 +202,4 @@ struct Dashboard: View {
         }.joined(separator: "\n")
     }
 }
+
