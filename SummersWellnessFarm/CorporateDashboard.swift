@@ -61,12 +61,12 @@ struct CorporateDashboard: View {
                     Image("Logo")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 120, height: 120)
+                        .frame(width: 140, height: 140)
 
                     Text("Corporate Dashboard")
-                        .font(.custom("Georgia-BoldItalic", size: 34))
-                        .foregroundColor(Color(red: 62/255, green: 62/255, blue: 36/255).opacity(0.7))
-                        .padding(.top, 30)
+                        .font(.custom("AvenirNext-Bold", size: 34))
+                        .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
+                        .padding(.top, 20)
 
                     Capsule()
                         .frame(width: 60, height: 4)
@@ -106,6 +106,6 @@ struct CorporateDashboard: View {
             }
             .frame(maxWidth: .infinity)
         }
-        .background(Color.white)
+        .background(Color(red: 228/255, green: 173/255, blue: 102/255).opacity(0.03))
     }
 }

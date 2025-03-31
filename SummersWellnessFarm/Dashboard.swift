@@ -221,12 +221,12 @@ struct Dashboard: View {
                     Image("Logo")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 120, height: 120)
+                        .frame(width: 140, height: 140)
 
                     Text("Personal Dashboard")
-                        .font(.custom("Georgia-BoldItalic", size: 34))
-                        .foregroundColor(Color(red: 62/255, green: 62/255, blue: 36/255).opacity(0.7))
-                        .padding(.top, 30)
+                        .font(.custom("AvenirNext-Bold", size: 34))
+                        .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
+                        .padding(.top, 20)
 
                     Capsule()
                         .frame(width: 60, height: 4)
@@ -287,7 +287,7 @@ struct Dashboard: View {
             }
             .frame(maxWidth: .infinity)
         }
-        .background(Color.white)
+        .background(Color(red: 228/255, green: 173/255, blue: 102/255).opacity(0.03))
     }
 
     func fetchBookings() {
@@ -315,17 +315,18 @@ struct Dashboard: View {
 
 struct DashboardWideButton: View {
     var title: String
-    var color: Color = Color(red: 129/255, green: 100/255, blue: 73/255)
+    var color: Color = Color(red: 67/255, green: 103/255, blue: 70/255)
+        .opacity(0.85)
 
     var body: some View {
         NavigationLink(destination: destinationForTitle(title)) {
             HStack {
                 Text(title)
-                    .font(.custom("AvenirNext-Regular", size: 27))
+                    .font(.custom("AvenirNext-Regular", size: 30))
                     .fontWeight(.medium)
                     .foregroundColor(.white)
-                    .multilineTextAlignment(.leading)
-                    .frame(maxWidth: .infinity, alignment: .leading) // ✅ This locks it left
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: .infinity, alignment: .center) // ✅ This locks it left
             }
             .padding()
             .frame(maxWidth: .infinity, minHeight: 130)
