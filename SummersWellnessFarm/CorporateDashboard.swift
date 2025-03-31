@@ -75,7 +75,7 @@ struct CorporateDashboard: View {
                 .padding(.top)
 
                 // INFO TILE
-                VStack(alignment: .leading, spacing: 6) {
+                VStack(alignment: .center, spacing: 6) {
                     Text("Group Info")
                         .font(.custom("AvenirNext-Regular", size: 26))
                         .foregroundColor(Color(red: 62/255, green: 62/255, blue: 36/255))
@@ -89,7 +89,7 @@ struct CorporateDashboard: View {
                     .foregroundColor(.secondary)
                 }
                 .padding()
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(maxWidth: 400, alignment: .center)
                 .background(Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
                 .cornerRadius(16)
                 .shadow(radius: 2)

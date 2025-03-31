@@ -236,12 +236,12 @@ struct Dashboard: View {
 
                 // INFO DISPLAY
                 HStack(alignment: .top, spacing: 20) {
-                    VStack(alignment: .leading, spacing: 6) {
+                    VStack(alignment: .center, spacing: 6) {
                         Text("Personal Info")
                             .font(.custom("AvenirNext-Regular", size: 26))
                             .foregroundColor(Color(red: 62/255, green: 62/255, blue: 36/255))
 
-                        VStack(alignment: .leading, spacing: 4) {
+                        VStack(alignment: .center, spacing: 4) {
                             Text("Welcome, \(viewModel.user.name)!")
                             Text("Room: 301")
                             Text("Email: \(viewModel.user.email)")
@@ -250,12 +250,12 @@ struct Dashboard: View {
                         .foregroundColor(.secondary)
                     }
                     .padding()
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: .center)
                     .background(Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
                     .cornerRadius(16)
                     .shadow(radius: 2)
 
-                    VStack(alignment: .leading, spacing: 6) {
+                    VStack(alignment: .center, spacing: 6) {
                         Text("Booked Activities")
                             .font(.custom("AvenirNext-Regular", size: 26))
                             .foregroundColor(Color(red: 62/255, green: 62/255, blue: 36/255))
@@ -265,7 +265,7 @@ struct Dashboard: View {
                             .foregroundColor(.secondary)
                     }
                     .padding()
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: .center)
                     .background(Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
                     .cornerRadius(16)
                     .shadow(radius: 2)
@@ -311,8 +311,7 @@ struct Dashboard: View {
     }
 }
 
-// MARK: - Dashboard Button View
-
+//Dashboard Button View
 struct DashboardWideButton: View {
     var title: String
     var color: Color = Color(red: 67/255, green: 103/255, blue: 70/255)
