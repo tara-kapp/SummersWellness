@@ -85,7 +85,7 @@ struct Dashboard: View {
 
 
 //Layout 1
-import SwiftUI
+/*import SwiftUI
 import SwiftData
 
 struct Dashboard: View {
@@ -102,7 +102,7 @@ struct Dashboard: View {
                     Image("Logo")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 90, height: 90)
+                        .frame(width: 120, height: 120)
 
                     Text("Personal Dashboard")
                         .font(.custom("Georgia-BoldItalic", size: 34))
@@ -201,5 +201,151 @@ struct Dashboard: View {
             "- \(booking.activityName) on \(booking.selectedDay) at \(booking.selectedTime) for \(booking.bookedSlots) people"
         }.joined(separator: "\n")
     }
+}*/
+
+//Layout 2
+import SwiftUI
+import SwiftData
+
+struct Dashboard: View {
+    @Environment(\.modelContext) private var modelContext
+    @Query var bookings: [Booking]
+    var viewModel: DashboardViewModel
+
+    var body: some View {
+        ScrollView {
+            VStack(spacing: 30) {
+
+                // LOGO + HEADER
+                VStack(spacing: 8) {
+                    Image("Logo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 120, height: 120)
+
+                    Text("Personal Dashboard")
+                        .font(.custom("Georgia-BoldItalic", size: 34))
+                        .foregroundColor(Color(red: 62/255, green: 62/255, blue: 36/255).opacity(0.7))
+                        .padding(.top, 30)
+
+                    Capsule()
+                        .frame(width: 60, height: 4)
+                        .foregroundColor(Color(red: 228/255, green: 173/255, blue: 102/255))
+                }
+                .padding(.top)
+
+                // INFO DISPLAY
+                HStack(alignment: .top, spacing: 20) {
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("Personal Info")
+                            .font(.custom("AvenirNext-Regular", size: 26))
+                            .foregroundColor(Color(red: 62/255, green: 62/255, blue: 36/255))
+
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Welcome, \(viewModel.user.name)!")
+                            Text("Room: 301")
+                            Text("Email: \(viewModel.user.email)")
+                        }
+                        .font(.custom("AvenirNext-Regular", size: 18))
+                        .foregroundColor(.secondary)
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
+                    .cornerRadius(16)
+                    .shadow(radius: 2)
+
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("Booked Activities")
+                            .font(.custom("AvenirNext-Regular", size: 26))
+                            .foregroundColor(Color(red: 62/255, green: 62/255, blue: 36/255))
+
+                        Text(bookedActivitiesText())
+                            .font(.custom("AvenirNext-Regular", size: 18))
+                            .foregroundColor(.secondary)
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
+                    .cornerRadius(16)
+                    .shadow(radius: 2)
+                }
+                .padding(.horizontal, 24)
+
+                // BUTTON GRID
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
+                    DashboardWideButton(title: "Book Activities")
+                    DashboardWideButton(title: "Explore The Farm")
+                    DashboardWideButton(title: "Find Activity Recommendations")
+                    DashboardWideButton(title: "SmartWatch Integration")
+                    DashboardWideButton(title: "Food Dashboard")
+                    DashboardWideButton(title: "Health")
+                    DashboardWideButton(title: "Personalized Recommendations")
+                }
+                .padding(.horizontal, 24)
+                .padding(.bottom, 40)
+            }
+            .frame(maxWidth: .infinity)
+        }
+        .background(Color.white)
+    }
+
+    func fetchBookings() {
+        do {
+            try modelContext.save()
+        } catch {
+            print("Error saving context: \(error)")
+        }
+    }
+
+    func bookedActivitiesText() -> String {
+        if bookings.isEmpty {
+            return "You have no booked activities."
+        }
+
+        let sortedBookings = bookings.sorted { $0.selectedTime < $1.selectedTime }
+
+        return sortedBookings.map { booking in
+            "- \(booking.activityName) on \(booking.selectedDay) at \(booking.selectedTime) for \(booking.bookedSlots) people"
+        }.joined(separator: "\n")
+    }
 }
 
+// MARK: - Dashboard Button View
+
+struct DashboardWideButton: View {
+    var title: String
+    var color: Color = Color(red: 129/255, green: 100/255, blue: 73/255)
+
+    var body: some View {
+        NavigationLink(destination: destinationForTitle(title)) {
+            HStack {
+                Text(title)
+                    .font(.custom("AvenirNext-Regular", size: 27))
+                    .fontWeight(.medium)
+                    .foregroundColor(.white)
+                    .multilineTextAlignment(.leading)
+                    .frame(maxWidth: .infinity, alignment: .leading) // ✅ This locks it left
+            }
+            .padding()
+            .frame(maxWidth: .infinity, minHeight: 130)
+            .background(color)
+            .cornerRadius(16)
+            .shadow(radius: 2)
+        }
+    }
+
+    @ViewBuilder
+    func destinationForTitle(_ title: String) -> some View {
+        switch title {
+        case "Book Activities": BookActivities()
+        case "Explore The Farm": ExploreTheFarm()
+        case "Find Activity Recommendations": ActivityRecs()
+        case "SmartWatch Integration": Watch()
+        case "Food Dashboard": FoodPreferencesView()
+        case "Health": CalorieTrackerForm()
+        case "Personalized Recommendations": Recommendations()
+        default: EmptyView()
+        }
+    }
+}
