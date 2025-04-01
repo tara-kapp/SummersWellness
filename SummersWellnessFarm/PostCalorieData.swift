@@ -83,10 +83,18 @@ func sendCalorieData(
             return
         }
 
-        if let data = data, let responseString = String(data: data, encoding: .utf8) {
-            completion(.success(responseString))
-        } else {
-            completion(.failure(NSError(domain: "Empty response", code: 0)))
+        if let data = data {
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
+                   let recommendation = json["recommendation"] as? String {
+                    completion(.success(recommendation))
+                } else {
+                    completion(.failure(NSError(domain: "Missing 'recommendation' key", code: 0)))
+                }
+            } catch {
+                completion(.failure(error))
+            }
         }
+
     }.resume()
 }
