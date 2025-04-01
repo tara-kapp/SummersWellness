@@ -13,7 +13,7 @@ struct FoodDash: View {
     var body: some View {
         VStack{
             Text(" Food Dashboard")
-                .font(.largeTitle)
+                .font(.custom("AvenirNext-Regular", size: 34))
                 .padding()
             SectionView(title: "Personal Info", content: """
             - Name: Jane Doe

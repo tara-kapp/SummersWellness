@@ -25,12 +25,12 @@ struct LoginView: View {
             VStack {
                 if isAuthenticated, let user = loggedInUser {
                     Text("Welcome, \(user.name)!")
-                        .font(.title)
+                        .font(.custom("AvenirNext-Regular", size: 28))
                         .padding()
                     
                     
                     Text("Select Your Dashboard:")
-                        .font(.headline)
+                        .font(.custom("AvenirNext-Regular", size: 17))
                         .padding(.top)
                     
                     // Select Dashboard Type
@@ -46,7 +46,7 @@ struct LoginView: View {
                 } else {
                     // Login Form
                     Text("Login to Your Account")
-                        .font(.title)
+                        .font(.custom("AvenirNext-Regular", size: 15))
                         .padding()
                     
                     TextField("Email", text: $email)
