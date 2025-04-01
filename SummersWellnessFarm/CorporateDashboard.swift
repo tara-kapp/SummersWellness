@@ -22,26 +22,27 @@ struct CorporateDashboard: View {
             - Email: example@summerswellness.com
             - Group Size: 50 Guests
             """)
-            
-
-            NavigationLink(destination: LargeBookActivities()){
-                Text("Book Activities")
-                    .modifier(CustomButtonStyle())
+                
+                
+                NavigationLink(destination: LargeBookActivities()){
+                    Text("Book Activities")
+                        .modifier(CustomButtonStyle())
+                }
+                
+                
+                NavigationLink(destination: ExploreTheFarm()){
+                    Text("Explore The Farm")
+                        .modifier(CustomButtonStyle())
+                }
+                
+                NavigationLink(destination: CorporateBookingView()){
+                    Text("Book Rental Space")
+                        .modifier(CustomButtonStyle())
+                }
+                
+                .navigationTitle("Dashboard")
             }
-          
-            
-            NavigationLink(destination: ExploreTheFarm()){
-                Text("Explore The Farm")
-                    .modifier(CustomButtonStyle())
-            }
-            
-            NavigationLink(destination: CorporateBookingView()){
-                Text("Book Rental Space")
-                    .modifier(CustomButtonStyle())
-            }
-
-    }
-        .navigationTitle("Dashboard")
+        }
     }
 }*/
 

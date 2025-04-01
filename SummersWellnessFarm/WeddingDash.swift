@@ -11,6 +11,7 @@
 
 struct WeddingDashboard: View {
     let viewModel: DashboardViewModel
+    
     var body: some View {
         VStack{
             Text("Wedding Dashboard")
