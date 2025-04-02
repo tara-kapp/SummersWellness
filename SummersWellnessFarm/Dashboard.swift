@@ -293,7 +293,7 @@ struct Dashboard: View {
                     DashboardWideButton(title: "SmartWatch Integration")
                     DashboardWideButton(title: "Food Preferences")
                     DashboardWideButton(title: "Health")
-                    // DashboardWideButton(title: "Calorie Calc")
+                    DashboardWideButton(title: "Calorie Calc")
                 }
                 .padding(.horizontal, 24)
                 .padding(.bottom, 40)
@@ -353,10 +353,11 @@ struct DashboardWideButton: View {
         switch title {
         case "Book Activities": BookActivities()
         case "Explore the Farm": ExploreTheFarm()
-        case "Find Activity Recommendations": ActivityRecs()
+        case "Find Activity Recommendations": UserPreferencesView()
         case "SmartWatch Integration": Watch()
         case "Food Preferences": FoodPreferencesView()
         case "Health": CalorieTrackerForm()
+        case "Calorie Calc": CalorieTrackerForm()
         case "Personalized Recommendations": Recommendations()
             // corporate
         case "Book Large Group Activities": LargeBookActivities()

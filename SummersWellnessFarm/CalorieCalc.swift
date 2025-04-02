@@ -47,7 +47,6 @@ struct CalorieTrackerForm: View {
     let intensityOptions = ["Light", "Moderate", "Vigorous"]
 
     var body: some View {
-        NavigationStack {
             ScrollView {
                 VStack(spacing: 20) {
 
@@ -218,7 +217,7 @@ struct CalorieTrackerForm: View {
 
                             }
                         }
-                    }
+                    
 
 
 struct MealEntry: View {
