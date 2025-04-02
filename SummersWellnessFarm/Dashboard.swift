@@ -287,7 +287,7 @@ struct Dashboard: View {
                 // BUTTON GRID
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
                     DashboardWideButton(title: "Book Activities")
-                    DashboardWideButton(title: "Explore The Farm")
+                    DashboardWideButton(title: "Explore the Farm")
                     DashboardWideButton(title: "Find Activity Recommendations")
                     DashboardWideButton(title: "SmartWatch Integration")
                     DashboardWideButton(title: "Food Dashboard")
@@ -327,8 +327,7 @@ struct Dashboard: View {
 //Dashboard Button View
 struct DashboardWideButton: View {
     var title: String
-    var color: Color = Color(red: 67/255, green: 103/255, blue: 70/255)
-        .opacity(0.85)
+    var color: Color = Color(red: 67/255, green: 103/255, blue: 70/255).opacity(0.85)
 
     var body: some View {
         NavigationLink(destination: destinationForTitle(title)) {
@@ -338,7 +337,7 @@ struct DashboardWideButton: View {
                     .fontWeight(.medium)
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity, alignment: .center) // ✅ This locks it left
+                    .frame(maxWidth: .infinity, alignment: .center)
             }
             .padding()
             .frame(maxWidth: .infinity, minHeight: 130)
@@ -352,12 +351,18 @@ struct DashboardWideButton: View {
     func destinationForTitle(_ title: String) -> some View {
         switch title {
         case "Book Activities": BookActivities()
-        case "Explore The Farm": ExploreTheFarm()
+        case "Explore the Farm": ExploreTheFarm()
         case "Find Activity Recommendations": ActivityRecs()
         case "SmartWatch Integration": Watch()
         case "Food Dashboard": FoodPreferencesView()
         case "Health": CalorieTrackerForm()
         case "Personalized Recommendations": Recommendations()
+            // corporate
+        case "Book Large Group Activities": LargeBookActivities()
+        case "Book Rental Space": CorporateBookingView()
+            //wedding
+        case "View Resort Spaces and Themes": ResortPhotoGallery()
+        case "Book a Tour": BookTour()
         default: EmptyView()
         }
     }
