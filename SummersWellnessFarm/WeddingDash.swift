@@ -10,6 +10,7 @@ import SwiftUI
 
 
 struct WeddingDashboard: View {
+    @EnvironmentObject var userSession: UserSession
     let viewModel: DashboardViewModel
     
     var body: some View {

@@ -3,6 +3,7 @@ import SwiftData
 
 struct Dashboard: View {
     @Environment(\.modelContext) private var modelContext
+    @EnvironmentObject var userSession: UserSession
     @Query var bookings: [Booking]
     var viewModel: DashboardViewModel // Observe the view model
     

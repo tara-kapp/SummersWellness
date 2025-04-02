@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct CorporateDashboard: View {
+    @EnvironmentObject var userSession: UserSession
     let viewModel: DashboardViewModel
     
     var body: some View {

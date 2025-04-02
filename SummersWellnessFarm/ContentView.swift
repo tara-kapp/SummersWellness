@@ -20,9 +20,12 @@ struct CustomButtonStyle: ViewModifier{
 }
 
 struct ContentView: View {
+    @StateObject private var userSession = UserSession()
+
     var body: some View {
         NavigationStack {
             LoginView()
         }
+        .environmentObject(userSession) // ✅ Share session across views
     }
 }
