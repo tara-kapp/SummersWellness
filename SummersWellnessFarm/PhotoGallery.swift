@@ -19,7 +19,7 @@ struct ResortPhotoGallery: View {
     ]
 
     var body: some View {
-        NavigationStack {
+
             VStack {
                 Text("Resort Photo Gallery")
                     .font(.custom("AvenirNext-Bold", size: 34))
@@ -50,7 +50,7 @@ struct ResortPhotoGallery: View {
                 }
             }
             .navigationTitle("Explore the Resort")
-        }
+        
     }
 }
 
