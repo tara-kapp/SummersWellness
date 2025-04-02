@@ -15,7 +15,6 @@ struct LargeBookActivities: View {
     @Query var bookings: [Booking]
 
     var body: some View {
-        NavigationStack {
             VStack {
                 Text("Book Large Group Activities")
                     .font(.custom("AvenirNext-Regular", size: 15))
@@ -49,7 +48,6 @@ struct LargeBookActivities: View {
                     }
                     .padding(.top)
                 }
-            }
             .onAppear {
                 let allActivities = loadAllActivities()
 
