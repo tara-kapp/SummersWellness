@@ -22,6 +22,15 @@ struct LoginView: View {
     var body: some View {
         NavigationStack {
             VStack {
+                // LOGO + HEADER
+                               VStack(spacing: 8) {
+                                   Image("Logo")
+                                       .resizable()
+                                       .scaledToFit()
+                                       .frame(width: 300, height: 300)
+                               }
+                               .padding(.top)
+                
                 if userSession.isAuthenticated, let user = userSession.loggedInUser {
                     Text("Welcome, \(user.name)!")
                         .font(.title)
@@ -35,7 +44,7 @@ struct LoginView: View {
                         NavigationLink(value: type) {
                             Text("\(type.rawValue) Dashboard")
                         }
-                        .buttonStyle(.borderedProminent)
+                        .modifier(CustomButtonStyle())
                         .padding()
                     }
 
@@ -71,21 +80,27 @@ struct LoginView: View {
     var loginForm: some View {
         VStack {
             Text("Login to Your Account")
-                .font(.title)
+                .font(.custom("AvenirNext-Regular", size: 34))
                 .padding()
 
             TextField("Email", text: $email)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .autocapitalization(.none)
+                .font(.custom("AvenirNext-Regular", size: 22))
+                .background(Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
                 .padding()
 
             SecureField("Password", text: $password)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
+                .font(.custom("AvenirNext-Regular", size: 22))
+                .background(Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
                 .padding()
 
             Button("Login") {
                 login()
             }
+            .font(.custom("AvenirNext-Regular", size: 22))
+            .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
             .padding()
             
             Button("Create an Account") {
@@ -100,6 +115,7 @@ struct LoginView: View {
 
 
             Text(loginError)
+                .font(.custom("AvenirNext-Regular", size: 22))
                 .foregroundColor(.red)
         }
     }

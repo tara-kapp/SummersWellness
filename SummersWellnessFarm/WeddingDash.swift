@@ -98,8 +98,8 @@ struct WeddingDashboard: View {
 
                 // BUTTON GRID
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
-                    DashboardWideButton(title: "Book Activities")
-                    DashboardWideButton(title: "Explore The Farm")
+                    DashboardWideButton(title: "Book Large Group Activities")
+                    DashboardWideButton(title: "Explore the Farm")
                     DashboardWideButton(title: "Book Rental Space")
                     DashboardWideButton(title: "View Resort Spaces and Themes")
                     DashboardWideButton(title: "Book a Tour")
