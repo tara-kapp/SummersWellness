@@ -66,17 +66,19 @@ struct BookActivities: View {
     var body: some View {
         VStack {
             Text("Book Activities")
-                .font(.title)
-                .fontWeight(.bold)
-                .padding()
-            
+                .font(.custom("AvenirNext-Bold", size: 34))
+                    .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
+                    .padding()
+            Capsule()
+                    .frame(width: 60, height: 4)
+                    .foregroundColor(Color(red: 228/255, green: 173/255, blue: 102/255))
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: 20) {
                     ForEach(sortedCategories, id: \ .self) { group in
                         VStack(alignment: .leading) {
                             Text(group)
-                                .font(.title2)
-                                .fontWeight(.bold)
+                                .font(.custom("AvenirNext-Bold", size: 25))
+                                .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                                 .padding(.leading, 16)
                                 .padding(.bottom, 8)
                             
@@ -87,6 +89,7 @@ struct BookActivities: View {
                                             selectedActivity = activity
                                         }) {
                                             ActivityRow(activity: activity, bookings: bookings)
+
                                         }
                                     }
                                 }
@@ -138,15 +141,17 @@ struct ActivityRow: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 80, height: 80)
                 .padding()
+                .foregroundColor(.white)
             
             Text(activity.name)
-                .font(.headline)
+                .font(.custom("AvenirNext-Bold", size: 17))
+                .foregroundColor(Color.white)
                 .multilineTextAlignment(.center)
             
         }
         .frame(width: 150)
         .padding()
-        .background(Color(.systemGray6))
+        .background(Color(red: 67/255, green: 103/255, blue: 70/255).opacity(0.85))
         .cornerRadius(10)
     }
 }
@@ -163,12 +168,17 @@ struct BookingView: View {
     var body: some View {
         VStack(spacing: 20) {
             Text("Book \(activity.name)")
-                .font(.largeTitle)
+                .font(.custom("AvenirNext-Bold", size: 34))
                 .fontWeight(.bold)
                 .padding()
             
+            Text("\(activity.activityDescription)")
+                            .font(.custom("AvenirNext-Regular", size: 22))
+                            .padding()
+
             Picker("Select Day", selection: $selectedDay) {
                 Text("Select a Day").tag("Select a Day")
+                    .font(.custom("AvenirNext-Regular", size: 17))
                 ForEach(activity.daysAvailable, id: \.self) { day in
                     Text(day).tag(day)
                 }
@@ -178,6 +188,7 @@ struct BookingView: View {
             
             Picker("Select Time", selection: $selectedTime) {
                 Text("Select a Time").tag("Select a Time")
+                    .font(.custom("AvenirNext-Regular", size: 17))
                 ForEach(activity.times, id: \.self) { time in
                     Text(time).tag(time)
                 }
@@ -186,6 +197,7 @@ struct BookingView: View {
             .padding()
             
             Stepper("Number of People: \(bookedSlots)", value: $bookedSlots, in: 1...activity.capacity)
+                .font(.custom("AvenirNext-Regular", size: 17))
                 .padding()
             
             // Capacity Check
@@ -193,6 +205,7 @@ struct BookingView: View {
             let availableSlots = activity.capacity - totalBookedSlots
 
             Text("Available Slots: \(availableSlots)")
+                .font(.custom("AvenirNext-Regular", size: 17))
                 .foregroundColor(availableSlots > 0 ? .green : .red)
                 .font(.headline)
 
@@ -218,8 +231,8 @@ struct BookingView: View {
                 }
             }
             .padding()
-            .background(availableSlots >= bookedSlots ? Color.green : Color.gray)
-            .foregroundColor(.white)
+            .background(availableSlots >= bookedSlots ? Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85) : Color.gray)
+            .foregroundColor(Color(red: 228/255, green: 173/255, blue: 102/255).opacity(0.03))
             .cornerRadius(10)
             .disabled(selectedTime == "Select a Time" || selectedDay == "Select a Day" || bookedSlots > availableSlots)
             
