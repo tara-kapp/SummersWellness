@@ -31,12 +31,6 @@ struct Dashboard: View {
                     .modifier(CustomButtonStyle())
             }
             
-            // Quiz button
-            NavigationLink(destination: ActivityRecs()){
-                Text("Find Activity Recommendations")
-                    .modifier(CustomButtonStyle())
-            }
-            
             // Watch integration button
             NavigationLink(destination: Watch()){
                 Text("SmartWatch Integration")
@@ -66,8 +60,11 @@ struct Dashboard: View {
         }
         .navigationTitle("Dashboard")
     }
+<<<<<<< HEAD
+=======
     
     
+>>>>>>> main
     func fetchBookings() {
         // Reload bookings from the model context
         do {
@@ -188,6 +185,14 @@ struct Dashboard: View {
         .background(Color.white)
         //.navigationTitle("Dashboard")
     }
+<<<<<<< HEAD
+}
+    
+#Preview {
+    Dashboard()
+        .modelContainer(for: Booking.self)
+    
+=======
 
     func fetchBookings() {
         do {
@@ -316,6 +321,7 @@ struct Dashboard: View {
             "- \(booking.activityName) on \(booking.selectedDay) at \(booking.selectedTime) for \(booking.bookedSlots) people"
         }.joined(separator: "\n")
     }
+
 }
 
 //Dashboard Button View

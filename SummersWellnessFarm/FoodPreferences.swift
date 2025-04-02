@@ -21,6 +21,9 @@ struct FoodPreferencesView: View {
     var body: some View {
             VStack {
                 Text("Select Your Preferences")
+
+                    .font(.largeTitle)
+
                     .font(.custom("AvenirNext-Regular", size: 34))
                     .fontWeight(.bold)
                     .padding()
@@ -32,7 +35,11 @@ struct FoodPreferencesView: View {
                                 toggleSelection(for: preference)
                             }) {
                                 Text(preference)
+
+                                    .font(.headline)
+
                                     .font(.custom("AvenirNext-Regular", size: 17))
+
                                     .padding()
                                     .frame(maxWidth: .infinity)
                                     .background(selectedPreferences.contains(preference) ? Color.green : Color.gray.opacity(0.2))
@@ -59,7 +66,11 @@ struct FoodPreferencesView: View {
                     }
                 }) {
                     Text("Get Recommendation")
+
+                        .font(.title2)
+
                         .font(.custom("AvenirNext-Regular", size: 22))
+
                         .padding()
                         .frame(maxWidth: .infinity)
                         .background(Color.blue)
@@ -69,7 +80,11 @@ struct FoodPreferencesView: View {
                 }
 
                 Text(aiRecommendation)
+
+                    .font(.headline)
+
                     .font(.custom("AvenirNext-Regular", size: 17))
+
                     .padding()
                     .frame(maxWidth: .infinity)
                     .background(Color.gray.opacity(0.2))

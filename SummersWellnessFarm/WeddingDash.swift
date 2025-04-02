@@ -40,16 +40,6 @@ struct WeddingDashboard: View {
                 Text("Book Rental Space")
                     .modifier(CustomButtonStyle())
             }
-            
-            NavigationLink(destination: ResortPhotoGallery()){
-                Text("View Resort Spaces and Themes")
-                    .modifier(CustomButtonStyle())
-            }
-            
-            NavigationLink(destination: BookTour()){
-                Text("Book a Tour")
-                    .modifier(CustomButtonStyle())
-            }
 
     }
         .navigationTitle("Dashboard")

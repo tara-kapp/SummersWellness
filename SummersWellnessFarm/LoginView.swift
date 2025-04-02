@@ -5,6 +5,7 @@
 //  Created by Kapp, Tara  (Student) on 3/16/25.
 //import SwiftUI
 
+/*
 import SwiftUI
 import SwiftData
 
@@ -14,17 +15,32 @@ struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var loginError = ""
+    @State private var isAuthenticated = false
+    @State private var loggedInUser: User?
+    @State private var isShowingSignup = false
+    @State private var selectedDashboard: DashboardType?
+    @State private var navigateToDashboard = false
     @State private var loggedInUser: User?
     @State private var isShowingSignup = false
     @AppStorage("isAuthenticated") private var isAuthenticated = false
     @AppStorage("loggedInUserEmail") private var loggedInUserEmail = ""
-
-
+    
+}
     var body: some View {
         NavigationStack {
             VStack {
                 if isAuthenticated, let user = loggedInUser {
                     Text("Welcome, \(user.name)!")
+                        .font(.title)
+                        .padding()
+
+                    Text("Select Your Dashboard:")
+                        .font(.headline)
+                        .padding(.top)
+
+                    // Select Dashboard Type
+                    // Direct Navigation
+
                         .font(.custom("AvenirNext-Regular", size: 28))
                         .padding()
                     
@@ -34,10 +50,24 @@ struct LoginView: View {
                         .padding(.top)
                     
                     // Select Dashboard Type
+
                     ForEach(DashboardType.allCases, id: \.self) { type in
                         NavigationLink(value: type) {
                             Text("\(type.rawValue) Dashboard")
                         }
+
+                            .buttonStyle(.borderedProminent)
+                            .padding()
+                    }
+
+                    
+                } else {
+                    // Login Form
+                    Text("Login to Your Account")
+                        .font(.title)
+                        .padding()
+
+
                         .buttonStyle(.borderedProminent)
                         .padding()
                         .onTapGesture {
@@ -49,10 +79,24 @@ struct LoginView: View {
                         .font(.custom("AvenirNext-Regular", size: 15))
                         .padding()
                     
+
                     TextField("Email", text: $email)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .autocapitalization(.none)
                         .padding()
+
+
+                    SecureField("Password", text: $password)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding()
+
+                    // Login Button
+                    Button("Login") {
+                        login()
+                    }
+                    .padding()
+
+
                     
                     SecureField("Password", text: $password)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -66,6 +110,7 @@ struct LoginView: View {
                     }
                     .padding()
                     
+
                     Text(loginError)
                         .foregroundColor(.red)
                     
@@ -77,7 +122,12 @@ struct LoginView: View {
                     .padding()
                 }
             }
+
+            .padding()
+            
+
             // ✅ Attach navigationDestination to NavigationStack directly!
+
             .navigationDestination(for: DashboardType.self) { type in
                 if let user = loggedInUser {
                     switch type {
@@ -89,6 +139,22 @@ struct LoginView: View {
                         WeddingDashboard(viewModel: DashboardViewModel(user: user, dashboardType: type))
                     }
                 } else {
+
+                    // Optional: fallback if user somehow becomes nil
+                    Text("Error: No user found")
+                }
+            }
+
+
+                .navigationDestination(isPresented: $isShowingSignup) {
+                    SignupView()
+                }
+        }
+    }
+
+    // Login Function
+    private func login() {
+
                     Text("Error: No user found")
                 }
             }
@@ -116,6 +182,7 @@ struct LoginView: View {
     
     // Login Function
     func login() {
+
         do {
             let descriptor = FetchDescriptor<User>(predicate: #Predicate { $0.email == email && $0.password == password })
             if let user = try modelContext.fetch(descriptor).first {
@@ -129,4 +196,4 @@ struct LoginView: View {
         }
     }
 }
-
+*/

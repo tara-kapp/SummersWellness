@@ -21,7 +21,7 @@ struct CorporateBookingView: View {
     @State private var showingConfirmation = false
     
     let corporateSpaces: [CorporateSpace] = [
-        CorporateSpace(name: "Executive Barn Suite", description: "A stylish barn-inspired suite with a private meeting area, high-speed Wi-Fi, and farm views.", pricePerDay: 300, imageName: "executive-barn-suite"),
+        CorporateSpace(name: "Executive Barn Suite", description: "A stylish barn-inspired suite with a private meeting area, high-speed Wi-Fi, and farm views.", pricePerDay: 300, imageName: "download-1"),
         CorporateSpace(name: "Conference Lodge", description: "A fully equipped conference space with AV technology, seating for 20, and a cozy fireplace.", pricePerDay: 250, imageName: "conference-lodge"),
         CorporateSpace(name: "Farmhouse Boardroom", description: "A charming farmhouse-style boardroom with a large table, whiteboard, and scenic views.", pricePerDay: 200, imageName: "farmhouse")
     ]
