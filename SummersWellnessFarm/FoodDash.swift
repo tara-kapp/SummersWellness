@@ -7,12 +7,10 @@
 
 import SwiftUI
 
-
-
 struct FoodDash: View {
     var body: some View {
         VStack{
-            Text(" Food Dashboard")
+            Text("Food Dashboard")
                 .font(.custom("AvenirNext-Regular", size: 34))
                 .padding()
             SectionView(title: "Personal Info", content: """
