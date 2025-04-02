@@ -56,49 +56,47 @@ struct BookActivities: View {
     }
     
     var sortedCategories: [String] {
-            groupedActivities.keys.sorted {
-                if $0 == "Corporate & Events" { return false } // Keep "Corporate & Events" at the bottom
-                if $1 == "Corporate & Events" { return true }
-                return $0 < $1 // Otherwise, sort alphabetically
-            }
+        groupedActivities.keys.sorted {
+            if $0 == "Corporate & Events" { return false } // Keep "Corporate & Events" at the bottom
+            if $1 == "Corporate & Events" { return true }
+            return $0 < $1 // Otherwise, sort alphabetically
         }
+    }
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                Text("Book Activities")
-                    .font(.custom("AvenirNext-Bold", size: 34))
+        VStack {
+            Text("Book Activities")
+                .font(.custom("AvenirNext-Bold", size: 34))
                     .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                     .padding()
-                Capsule()
+            Capsule()
                     .frame(width: 60, height: 4)
                     .foregroundColor(Color(red: 228/255, green: 173/255, blue: 102/255))
-                ScrollView(.vertical, showsIndicators: false) {
-                    VStack(spacing: 20) {
-                        ForEach(sortedCategories, id: \ .self) { group in
-                            VStack(alignment: .leading) {
-                                Text(group)
-                                    .font(.custom("AvenirNext-Bold", size: 25))
-                                    .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
-                                    .padding(.leading, 16)
-                                    .padding(.bottom, 8)
-                                
-                                ScrollView(.horizontal, showsIndicators: false) {
-                                    HStack(spacing: 16) {
-                                        ForEach(groupedActivities[group] ?? []) { activity in
-                                            Button(action: {
-                                                selectedActivity = activity
-                                            }) {
-                                                ActivityRow(activity: activity, bookings: bookings)
-                                            }
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(spacing: 20) {
+                    ForEach(sortedCategories, id: \ .self) { group in
+                        VStack(alignment: .leading) {
+                            Text(group)
+                                .font(.custom("AvenirNext-Bold", size: 25))
+                                .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
+                                .padding(.leading, 16)
+                                .padding(.bottom, 8)
+                            
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(spacing: 16) {
+                                    ForEach(groupedActivities[group] ?? []) { activity in
+                                        Button(action: {
+                                            selectedActivity = activity
+                                        }) {
+                                            ActivityRow(activity: activity, bookings: bookings)
+
                                         }
                                     }
-                                    .padding(.horizontal, 16)
                                 }
+                                .padding(.horizontal, 16)
                             }
                         }
                     }
-                    .padding(.top)
                 }
             }
             .onAppear {
