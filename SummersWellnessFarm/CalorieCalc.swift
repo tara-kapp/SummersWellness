@@ -7,11 +7,12 @@
 
 import SwiftUI
 
-struct CalorieTrackerForm: View {
-    @State private var showingPopup = false
-    @State private var isLoading = false
-    @State private var resultText: String? = nil
+struct CalorieResult: Identifiable {
+    let id = UUID()
+    let summary: String
+}
 
+struct CalorieTrackerForm: View {
     @State private var age: Int = 25
     @State private var gender: String = "Male"
     @State private var height: Double = 72
@@ -26,6 +27,10 @@ struct CalorieTrackerForm: View {
     @State private var lunch: String = ""
     @State private var dinner: String = ""
     @State private var snack: String = ""
+    
+    @State private var resultToShow: CalorieResult? = nil
+    @State private var isLoading = false
+
 
     let genderOptions = ["Male", "Female", "Other"]
     let resortActivities = [
@@ -143,71 +148,78 @@ struct CalorieTrackerForm: View {
                     }
 
                     // ✅ Submit Button
-                    Button(action: {
-                        // 1. Print to Terminal
-                        printSummary()
+                    Button("Submit Daily Log") {
+                                            isLoading = true
+                                            resultToShow = nil
 
-                        // 2. Send POST Request
-                        sendCalorieData(
-                            age: age,
-                            gender: gender,
-                            height: height,
-                            weight: weight,
-                            selectedActivities: selectedActivities,
-                            activityDurations: activityDurations,
-                            activityIntensity: activityIntensity,
-                            breakfast: breakfast,
-                            lunch: lunch,
-                            dinner: dinner,
-                            snack: snack
-                        ) { result in
-                            switch result {
-                            case .success(let message):
-                                print("✅ POST Success: \(message)")
-                            case .failure(let error):
-                                print("❌ POST Failed: \(error.localizedDescription)")
+                                            sendCalorieData(
+                                                age: age,
+                                                gender: gender,
+                                                height: height,
+                                                weight: weight,
+                                                selectedActivities: selectedActivities,
+                                                activityDurations: activityDurations,
+                                                activityIntensity: activityIntensity,
+                                                breakfast: breakfast,
+                                                lunch: lunch,
+                                                dinner: dinner,
+                                                snack: snack
+                                            ) { result in
+                                                DispatchQueue.main.async {
+                                                    isLoading = false
+                                                    switch result {
+                                                    case .success(let output):
+                                                        resultToShow = CalorieResult(summary: output)
+                                                    case .failure(let error):
+                                                        resultToShow = CalorieResult(summary: "Error: \(error.localizedDescription)")
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        .buttonStyle(.borderedProminent)
+                                        .disabled(isLoading)
+                                    }
+                                    .padding()
+                                }
+            
+            .sheet(item: $resultToShow) { result in
+                VStack(spacing: 20) {
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 12) {
+                            ForEach(result.summary.components(separatedBy: "\n"), id: \.self) { line in
+                                if line.lowercased().contains("meal calorie") {
+                                    Label(line, systemImage: "fork.knife")
+                                        .font(.title3)
+                                        .fontWeight(.semibold)
+                                } else if line.lowercased().contains("activity calorie") {
+                                    Label(line, systemImage: "flame")
+                                        .font(.title3)
+                                        .fontWeight(.semibold)
+                                } else if line.lowercased().contains("summary") {
+                                    Text("📝 " + line)
+                                        .font(.headline)
+                                        .padding(.top, 8)
+                                } else {
+                                    Text(line)
+                                        .font(.body)
+                                }
                             }
                         }
-                    }) {
-                        Text("Submit")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.green)
-                            .cornerRadius(12)
-                            .shadow(radius: 3)
+                        .padding()
                     }
 
-
+                    Button("Close") {
+                        resultToShow = nil
+                    }
+                    .padding(.top)
                 }
                 .padding()
             }
-            .navigationTitle("Calorie Tracker")
-        }
-    }
-    func printSummary() {
-        print("USER INFO")
-        print("Age: \(age)")
-        print("Gender: \(gender)")
-        print("Height: \(height) cm")
-        print("Weight: \(weight) kg")
 
-        print("\n SELECTED ACTIVITIES")
-        for activity in selectedActivities {
-            let duration = activityDurations[activity, default: 30]
-            let intensity = activityIntensity[activity, default: "Moderate"]
-            print("Activity: \(activity) — Duration: \(duration) min — Intensity: \(intensity)")
-        }
+                            }
+                        }
+                    }
 
-        print("\n MEALS")
-        print("Breakfast: \(breakfast)")
-        print("Lunch: \(lunch)")
-        print("Dinner: \(dinner)")
-        print("Snack: \(snack)")
-    }
-
-}
 
 struct MealEntry: View {
     var title: String

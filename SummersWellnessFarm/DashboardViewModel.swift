@@ -25,3 +25,8 @@ enum DashboardType: String, CaseIterable, Hashable {
     case corporate = "Corporate"
     case wedding = "Wedding"
 }
+
+
+
+
+    // Add methods to manage data for the specific dashboard type if needed

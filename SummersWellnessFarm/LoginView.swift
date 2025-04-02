@@ -112,4 +112,3 @@ struct LoginView: View {
         }
     }
 }
-

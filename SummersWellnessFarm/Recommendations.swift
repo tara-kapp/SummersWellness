@@ -13,7 +13,7 @@ struct Recommendations: View {
             VStack(alignment: .leading, spacing: 20) {
                 // Header Section
                 Text("Personalized Recommendations")
-                    .font(.largeTitle)
+                    .font(.custom("AvenirNext-Regular", size: 34))
                     .fontWeight(.bold)
                     .padding(.top, 20)
 

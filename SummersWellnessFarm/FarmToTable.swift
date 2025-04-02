@@ -13,7 +13,7 @@ struct FarmToTableView: View {
             VStack(alignment: .leading, spacing: 20) {
                 // Header Section
                 Text("Farm to Table Experience")
-                    .font(.largeTitle)
+                    .font(.custom("AvenirNext-Regular", size: 34))
                     .fontWeight(.bold)
                     .padding(.top, 20)
 
@@ -64,7 +64,7 @@ struct SectionView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text(title)
-                .font(.title2)
+                .font(.custom("AvenirNext-Regular", size: 22))
                 .fontWeight(.semibold)
 
             Text(content)
