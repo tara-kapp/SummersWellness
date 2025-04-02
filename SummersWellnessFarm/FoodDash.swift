@@ -13,7 +13,7 @@ struct FoodDash: View {
     var body: some View {
         VStack{
             Text(" Food Dashboard")
-                .font(.largeTitle)
+                .font(.custom("AvenirNext-Regular", size: 34))
                 .padding()
             SectionView(title: "Personal Info", content: """
             - Name: Jane Doe
@@ -34,6 +34,12 @@ struct FoodDash: View {
                 Text("Farm to Table info")
                     .modifier(CustomButtonStyle())
             }
+            
+            NavigationLink(destination: FoodFormView(viewModel: GuestPreferencesViewModel())) {
+                Text("Food Preferences")
+                    .modifier(CustomButtonStyle())
+            }
+
             
     }
         .navigationTitle("Dashboard")

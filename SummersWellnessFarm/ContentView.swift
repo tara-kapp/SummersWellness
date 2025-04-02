@@ -4,16 +4,19 @@
 //
 //  Created by Grace Beard on 2/16/25.
 
-import SwiftUI
+/*
+ import SwiftUI
 
 struct CustomButtonStyle: ViewModifier{
     func body(content: Content) -> some View{
         content
-            .font(.headline)
+            .font(.custom("AvenirNext-Regular", size: 17))
             .foregroundColor(.white)
             .padding()
             .frame(maxWidth: 200)
-            .background(Color.green)
+            .background(
+                            Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.7)
+                        )
             .cornerRadius(10)
             .shadow(radius:5)
     }
@@ -21,35 +24,9 @@ struct CustomButtonStyle: ViewModifier{
 
 struct ContentView: View {
     var body: some View {
-
-
-    
-        NavigationStack{
-            Text("Summers Wellness Farm")
-                .font(.largeTitle)
-                .padding()
-            Text("Welcome Name!")
-            
-            
-            // Dashboard button
-            NavigationLink(destination: Dashboard()){
-                Text("Personal Dashboard")
-                    .modifier(CustomButtonStyle())
-            }
-            NavigationLink(destination: WeddingDashboard()){
-                Text("Wedding Dashboard")
-                    .modifier(CustomButtonStyle())
-            }
-            NavigationLink(destination: WeddingDashboard()){
-                Text("Corporate Dashboard")
-                    .modifier(CustomButtonStyle())
-            }
-                    }
-
-        Text("Summers Wellness Farm")
-            .font(.largeTitle)
-                .padding()
-        Text("Welcome Name!")
-
+        NavigationStack {
+            LoginView()
+        }
     }
 }
+*/

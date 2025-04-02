@@ -28,4 +28,5 @@ enum DashboardType: String, CaseIterable, Hashable {
 
 
 
+
     // Add methods to manage data for the specific dashboard type if needed

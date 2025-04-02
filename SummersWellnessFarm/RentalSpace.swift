@@ -21,7 +21,7 @@ struct CorporateBookingView: View {
     @State private var showingConfirmation = false
     
     let corporateSpaces: [CorporateSpace] = [
-        CorporateSpace(name: "Executive Barn Suite", description: "A stylish barn-inspired suite with a private meeting area, high-speed Wi-Fi, and farm views.", pricePerDay: 300, imageName: "executive-barn-suite"),
+        CorporateSpace(name: "Executive Barn Suite", description: "A stylish barn-inspired suite with a private meeting area, high-speed Wi-Fi, and farm views.", pricePerDay: 300, imageName: "download-1"),
         CorporateSpace(name: "Conference Lodge", description: "A fully equipped conference space with AV technology, seating for 20, and a cozy fireplace.", pricePerDay: 250, imageName: "conference-lodge"),
         CorporateSpace(name: "Farmhouse Boardroom", description: "A charming farmhouse-style boardroom with a large table, whiteboard, and scenic views.", pricePerDay: 200, imageName: "farmhouse")
     ]
@@ -30,7 +30,7 @@ struct CorporateBookingView: View {
         VStack(alignment: .leading, spacing: 20) {
             // Title
             Text("Book a Space")
-                .font(.largeTitle)
+                .font(.custom("AvenirNext-Regular", size: 34))
                 .fontWeight(.bold)
                 .padding(.horizontal)
             
@@ -43,7 +43,7 @@ struct CorporateBookingView: View {
             
             // List of Corporate Spaces
             Text("Available Spaces")
-                .font(.title2)
+                .font(.custom("AvenirNext-Regular", size: 22))
                 .fontWeight(.bold)
                 .padding(.horizontal)
             
@@ -62,7 +62,7 @@ struct CorporateBookingView: View {
                 }
             }) {
                 Text("Book Now")
-                    .font(.headline)
+                    .font(.custom("AvenirNext-Regular", size: 17))
                     .foregroundColor(.white)
                     .padding()
                     .frame(maxWidth: .infinity)
@@ -113,12 +113,12 @@ struct CorporateSpaceRow: View {
             
             VStack(alignment: .leading, spacing: 5) {
                 Text(space.name)
-                    .font(.headline)
+                    .font(.custom("AvenirNext-Regular", size: 17))
                 Text(space.description)
-                    .font(.subheadline)
+                    .font(.custom("AvenirNext-Regular", size: 15))
                     .foregroundColor(.gray)
                 Text("$\(String(format: "%.2f", space.pricePerDay)) / day")
-                    .font(.subheadline)
+                    .font(.custom("AvenirNext-Regular", size: 15))
                     .foregroundColor(.green)
             }
             

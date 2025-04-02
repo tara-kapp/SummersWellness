@@ -1,4 +1,5 @@
 import SwiftData
+import Foundation
 
 func loadActivitiesForPersonalUsers() -> [Activity]{
     return loadAllActivities().filter { $0.capacity < 100}
@@ -8,7 +9,9 @@ func loadActivitiesForLargeGroupUsers() -> [Activity]{
     return loadAllActivities()
     
 }
+
 func loadAllActivities() -> [Activity] {
+
     return [
         // 🌿 Wellness & Relaxation
         Activity(name: "Yoga Class", image: "figure.mind.and.body", groupTitle: "Wellness", capacity: 15, times: ["8:00 AM", "10:00 AM"], daysAvailable: ["Monday", "Wednesday"], activityDescription: "A relaxing yoga session to start your day."),
