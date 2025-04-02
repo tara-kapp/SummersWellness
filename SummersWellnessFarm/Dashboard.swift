@@ -291,9 +291,9 @@ struct Dashboard: View {
                     DashboardWideButton(title: "Explore the Farm")
                     DashboardWideButton(title: "Find Activity Recommendations")
                     DashboardWideButton(title: "SmartWatch Integration")
-                    DashboardWideButton(title: "Food Dashboard")
+                    DashboardWideButton(title: "Food Preferences")
                     DashboardWideButton(title: "Health")
-                    DashboardWideButton(title: "Personalized Recommendations")
+                    // DashboardWideButton(title: "Calorie Calc")
                 }
                 .padding(.horizontal, 24)
                 .padding(.bottom, 40)
@@ -355,7 +355,7 @@ struct DashboardWideButton: View {
         case "Explore the Farm": ExploreTheFarm()
         case "Find Activity Recommendations": ActivityRecs()
         case "SmartWatch Integration": Watch()
-        case "Food Dashboard": FoodPreferencesView()
+        case "Food Preferences": FoodPreferencesView()
         case "Health": CalorieTrackerForm()
         case "Personalized Recommendations": Recommendations()
             // corporate
@@ -364,7 +364,7 @@ struct DashboardWideButton: View {
             //wedding
         case "View Resort Spaces and Themes": ResortPhotoGallery()
         case "Book a Tour": BookTour()
-        default: EmptyView()
+        default: Text("Unknown destination for: \(title)")
         }
     }
 }
