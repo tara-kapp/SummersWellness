@@ -18,11 +18,6 @@ struct Dashboard: View {
                         .scaledToFit()
                         .frame(width: 180, height: 180)
 
-                    Text("Personal Dashboard")
-                        .font(.custom("AvenirNext-Bold", size: 24))
-                        .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
-                        .padding(.top, 20)
-
                     Capsule()
                         .frame(width: 60, height: 4)
                         .foregroundColor(Color(red: 228/255, green: 173/255, blue: 102/255))
@@ -69,13 +64,12 @@ struct Dashboard: View {
                 // BUTTON GRID
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
                     DashboardWideButton(title: "Book Activities")
-                    DashboardWideButton(title: "Fresh Fresh Food")
-                    DashboardWideButton(title: "Explore the Farm")
-                    DashboardWideButton(title: "Find Activity Recommendations")
+                    DashboardWideButton(title: "Farm Fresh Food")
+                    DashboardWideButton(title: "Activity Recommendations")
                     DashboardWideButton(title: "SmartWatch Integration")
-                    DashboardWideButton(title: "Food Preferences")
-                    DashboardWideButton(title: "Health")
-                    DashboardWideButton(title: "Calorie Calc")
+                    DashboardWideButton(title: "Health Tracker")
+                    DashboardWideButton(title: "Calorie Calculator")
+                    DashboardWideButton(title: "Explore the Farm")
                 }
                 .padding(.horizontal, 24)
                 .padding(.bottom, 40)
@@ -137,9 +131,8 @@ struct DashboardWideButton: View {
         case "Explore the Farm": ExploreTheFarm()
         case "Find Activity Recommendations": UserPreferencesView()
         case "SmartWatch Integration": Watch()
-        case "Food Preferences": FoodPreferencesView()
-        case "Health": CalorieTrackerForm()
-        case "Calorie Calc": CalorieTrackerForm()
+        case "Health Tracker": CalorieTrackerForm()
+        case "Calorie Calculator": CalorieTrackerForm()
         case "Personalized Recommendations": Recommendations()
         case "Farm Fresh Food": FoodDash()
             // corporate
