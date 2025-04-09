@@ -1,51 +1,4 @@
-//
-//  WeddingDash.swift
-//  SummersWellnessFarm
-//
-//  Created by Grace Beard on 2/27/25.
-//
 
-/*import SwiftUI
-
-
-
-struct WeddingDashboard: View {
-    @EnvironmentObject var userSession: UserSession
-    let viewModel: DashboardViewModel
-    
-    var body: some View {
-        VStack{
-            Text("Wedding Dashboard")
-                .font(.custom("AvenirNext-Regular", size: 34))
-                .padding()
-
-            SectionView(title: "Group Info", content: """
-            - Primary Contact Name: Jane Doe
-            - Email: example@summerswellness.com
-            - Group Size: 100 Guests
-            """)
-            
-
-            NavigationLink(destination: LargeBookActivities()){
-                Text("Book Activities")
-                    .modifier(CustomButtonStyle())
-            }
-          
-            // Explore the farm button
-            NavigationLink(destination: ExploreTheFarm()){
-                Text("Explore The Farm")
-                    .modifier(CustomButtonStyle())
-            }
-            
-            NavigationLink(destination: CorporateBookingView()){
-                Text("Book Rental Space")
-                    .modifier(CustomButtonStyle())
-            }
-
-    }
-        .navigationTitle("Dashboard")
-    }
-}*/
 
 //LAYOUT 1
 import SwiftUI
@@ -65,7 +18,7 @@ struct WeddingDashboard: View {
                         .frame(width: 140, height: 140)
 
                     Text("Wedding Dashboard")
-                        .font(.custom("AvenirNext-Bold", size: 34))
+                        .font(.custom("AvenirNext-Bold", size: 24))
                         .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                         .padding(.top, 20)
 
