@@ -69,7 +69,7 @@ struct Dashboard: View {
                 // BUTTON GRID
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
                     DashboardWideButton(title: "Book Activities")
-                    DashboardWideButton(title: "Fresh Grown Food")
+                    DashboardWideButton(title: "Fresh Fresh Food")
                     DashboardWideButton(title: "Explore the Farm")
                     DashboardWideButton(title: "Find Activity Recommendations")
                     DashboardWideButton(title: "SmartWatch Integration")
@@ -141,7 +141,7 @@ struct DashboardWideButton: View {
         case "Health": CalorieTrackerForm()
         case "Calorie Calc": CalorieTrackerForm()
         case "Personalized Recommendations": Recommendations()
-        case "Fresh Grown Food": FoodDash()
+        case "Farm Fresh Food": FoodDash()
             // corporate
         case "Book Large Group Activities": LargeBookActivities()
         case "Book Rental Space": CorporateBookingView()

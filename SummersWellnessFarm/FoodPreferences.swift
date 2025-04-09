@@ -20,10 +20,8 @@ struct FoodPreferencesView: View {
 
     var body: some View {
             VStack {
-                Text("Select Your Preferences")
-
+                Text("Learn more about the food we grow!")
                     .font(.largeTitle)
-
                     .font(.custom("AvenirNext-Bold", size: 34))
                     .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                     .padding()
@@ -52,7 +50,7 @@ struct FoodPreferencesView: View {
                 }
 
                 if isLoading {
-                    ProgressView("Getting Recommendation...")
+                    ProgressView("Generating...")
                         .padding()
                 }
 
@@ -65,7 +63,7 @@ struct FoodPreferencesView: View {
                         }
                     }
                 }) {
-                    Text("Get Recommendation")
+                    Text("Learn more!")
 
                         .font(.title2)
 

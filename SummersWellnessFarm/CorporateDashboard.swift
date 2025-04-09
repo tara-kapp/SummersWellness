@@ -2,8 +2,6 @@
 //  CorporateDashboard.swift
 //  SummersWellnessFarm
 //
-//
-
 
 
 //LAYOUT 1
@@ -80,7 +78,7 @@ struct CorporateDashboard: View {
                     DashboardWideButton(title: "Book Large Group Activities")
                     DashboardWideButton(title: "Explore the Farm")
                     DashboardWideButton(title: "Book Rental Space")
-                    DashboardWideButton(title: "Fresh Grown Food")
+                    DashboardWideButton(title: "Fresh Fresh Food")
                 }
                 .padding(.horizontal, 24)
                 .padding(.bottom, 40)
