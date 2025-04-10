@@ -46,7 +46,8 @@ struct CalorieTrackerForm: View {
         "Farm Tour",
         "Swimming",
         "Cycling",
-        "Cooking Class"
+        "Cooking Class",
+        "Running"
     ]
     let intensityOptions = ["Light", "Moderate", "Vigorous"]
 
@@ -142,7 +143,7 @@ struct CalorieTrackerForm: View {
                     
                     GroupBox(label: Label("General Info", systemImage: "flame.fill")){
                         VStack(alignment: .leading, spacing: 15) {
-                            KnownItemEntry(title: "Steps", itemValue: $steps)
+                            KnownItemEntry(title: "Steps (Walking Only)", itemValue: $steps)
                             KnownItemEntry(title: "Known Calories Burned(Do not do this and enter activities)", itemValue: $calories)
                             KnownItemEntry(title: "Known Hours of Sleep", itemValue: $hoursOfSleep)
                         }

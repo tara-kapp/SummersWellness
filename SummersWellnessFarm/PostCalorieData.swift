@@ -14,6 +14,9 @@ struct CalorieTrackingRequest: Codable {
     let weight: Double
     let activities: [ActivityData]
     let meals: [String: String]
+    let steps: Double?
+    let calories: Double?
+    let hoursOfSleep: Double?
 }
 
 struct ActivityData: Codable {
@@ -60,7 +63,10 @@ func sendCalorieData(
         height: height,
         weight: weight,
         activities: activities,
-        meals: mealData
+        meals: mealData,
+        steps: steps,
+        calories: calories,        
+        hoursOfSleep: hoursOfSleep
     )
 
     guard let url = URL(string: "https://8y553o1ua3.execute-api.us-east-1.amazonaws.com/prod/ai-health-calc") else {
@@ -75,6 +81,11 @@ func sendCalorieData(
     do {
         let encodedData = try JSONEncoder().encode(requestBody)
         request.httpBody = encodedData
+        
+        // Print the JSON payload to the console
+        if let jsonString = String(data: encodedData, encoding: .utf8) {
+            print("DEBUG: Sending payload: \(jsonString)")
+        }
     } catch {
         completion(.failure(error))
         return
@@ -98,6 +109,5 @@ func sendCalorieData(
                 completion(.failure(error))
             }
         }
-
     }.resume()
 }
