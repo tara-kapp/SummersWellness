@@ -65,7 +65,7 @@ struct FoodPreferencesView: View {
                         }
                     }
                 }) {
-                    Text("Get Personalized Recommendation")
+                    Text("Get Food Information")
 
                         .font(.title2)
 
