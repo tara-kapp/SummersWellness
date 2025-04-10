@@ -23,13 +23,13 @@ struct LoginView: View {
         NavigationStack {
             VStack {
                 // LOGO + HEADER
-                               VStack(spacing: 8) {
-                                   Image("Logo")
-                                       .resizable()
-                                       .scaledToFit()
-                                       .frame(width: 300, height: 300)
-                               }
-                               .padding(.top)
+                VStack(spacing: 8) {
+                    Image("Logo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 300, height: 300)
+                }
+                .padding(.top)
                 
                 if userSession.isAuthenticated, let user = userSession.loggedInUser {
                     Text("Welcome, \(user.name)!")
@@ -73,6 +73,7 @@ struct LoginView: View {
             }
             .onAppear {
                 userSession.loadLoggedInUser()
+                print("All users: \(users)")
             }
         }
     }
@@ -121,17 +122,17 @@ struct LoginView: View {
     }
 
     func login() {
-            let trimmedEmail = email.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-                let trimmedPassword = password.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedEmail = email.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+            let trimmedPassword = password.trimmingCharacters(in: .whitespacesAndNewlines)
 
-                if let user = users.first(where: {
-                    $0.email.lowercased() == trimmedEmail && $0.password == trimmedPassword
-                }) {
-                    userSession.logIn(user: user)
-                } else {
-                    print("❌ Invalid login attempt — Entered email: \(trimmedEmail), password: \(trimmedPassword)")
-                    print("Available users: \(users.map { "\($0.email) / \($0.password)" })")
-                    loginError = "Invalid email or password"
-                }
+            if let user = users.first(where: {
+                $0.email.lowercased() == trimmedEmail && $0.password == trimmedPassword
+            }) {
+                userSession.logIn(user: user)
+            } else {
+                print("❌ Invalid login attempt — Entered email: \(trimmedEmail), password: \(trimmedPassword)")
+                print("Available users: \(users.map { "\($0.email) / \($0.password)" })")
+                loginError = "Invalid email or password"
             }
-}
+        }
+    }

@@ -136,9 +136,10 @@ struct DashboardWideButton: View {
         case "Explore the Farm": ExploreTheFarm()
         case "Find Activity Recommendations": UserPreferencesView()
         case "SmartWatch Integration": Watch()
-        case "Food Preferences": FoodPreferencesView()
-        case "Health": CalorieTrackerForm()
+        case "Health Tracker": CalorieTrackerForm()
+        case "Calorie Calculator": CalorieTrackerForm()
         case "Personalized Recommendations": Recommendations()
+        case "Farm Fresh Food": FoodDash()
             // corporate
         case "Book Large Group Activities": LargeBookActivities()
         case "Book Rental Space": CorporateBookingView()

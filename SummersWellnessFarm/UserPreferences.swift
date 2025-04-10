@@ -31,7 +31,7 @@ struct UserPreferencesView: View {
 
                                     .padding()
                                     .frame(maxWidth: .infinity)
-                                    .background(selectedPreferences.contains(preference) ? Color(red: 67/255, green: 103/255, blue: 70/255).opacity(0.9) : Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
+                                    .background(selectedPreferences.contains(preference) ? Color(red: 67/255, green: 103/255, blue: 70/255).opacity(0.1) : Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
                                     .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                                     .cornerRadius(10)
                             }
@@ -66,7 +66,7 @@ struct UserPreferencesView: View {
                         .cornerRadius(10)
                         .padding()
                 }
-
+                // output
                 Text(aiRecommendation)
                     .font(.custom("AvenirNext-Regular", size: 17))
                     .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))

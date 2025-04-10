@@ -25,3 +25,4 @@ enum DashboardType: String, CaseIterable, Hashable {
     case corporate = "Corporate"
     case wedding = "Wedding"
 }
+
