@@ -54,7 +54,11 @@ struct CalorieTrackerForm: View {
     var body: some View {
             ScrollView {
                 VStack(spacing: 20) {
-
+                    Text("Health & Wellness Tracker!")
+                        .font(.largeTitle)
+                        .font(.custom("AvenirNext-Bold", size: 34))
+                        .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
+                        .padding(.bottom, 10)
                     // 🌟 User Info
                     GroupBox(label: Label("Your Info", systemImage: "person.fill")) {
                         VStack(spacing: 10) {

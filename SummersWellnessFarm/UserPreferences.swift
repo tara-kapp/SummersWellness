@@ -12,7 +12,7 @@ struct UserPreferencesView: View {
 
     var body: some View {
             VStack {
-                Text("Select Your Preferences")
+                Text("What do you hope to get out of your trip?")
                     .font(.largeTitle)
                     .font(.custom("AvenirNext-Bold", size: 34))
                     .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
