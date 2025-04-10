@@ -15,31 +15,32 @@ struct LoginView: View {
     @State private var password = ""
     @State private var loginError = ""
     @State private var isShowingSignup = false
-
+    
     // ✅ Move @Query to class-level
     @Query private var users: [User]
-
+    
+    
     var body: some View {
         NavigationStack {
             VStack {
                 // LOGO + HEADER
-                               VStack(spacing: 8) {
-                                   Image("Logo")
-                                       .resizable()
-                                       .scaledToFit()
-                                       .frame(width: 300, height: 300)
-                               }
-                               .padding(.top)
+                VStack(spacing: 8) {
+                    Image("Logo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 300, height: 300)
+                }
+                .padding(.top)
                 
                 if userSession.isAuthenticated, let user = userSession.loggedInUser {
                     Text("Welcome, \(user.name)!")
                         .font(.title)
                         .padding()
-
+                    
                     Text("Select Your Dashboard:")
                         .font(.headline)
                         .padding(.top)
-
+                    
                     ForEach(DashboardType.allCases, id: \.self) { type in
                         NavigationLink(value: type) {
                             Text("\(type.rawValue) Dashboard")
@@ -47,7 +48,7 @@ struct LoginView: View {
                         .modifier(CustomButtonStyle())
                         .padding()
                     }
-
+                    
                     Button("Logout") {
                         userSession.logout()
                     }
@@ -73,29 +74,30 @@ struct LoginView: View {
             }
             .onAppear {
                 userSession.loadLoggedInUser()
+                print("All users: \(users)")
             }
         }
     }
-
+    
     var loginForm: some View {
         VStack {
             Text("Login to Your Account")
                 .font(.custom("AvenirNext-Regular", size: 34))
                 .padding()
-
+            
             TextField("Email", text: $email)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .autocapitalization(.none)
                 .font(.custom("AvenirNext-Regular", size: 22))
                 .background(Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
                 .padding()
-
+            
             SecureField("Password", text: $password)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .font(.custom("AvenirNext-Regular", size: 22))
                 .background(Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
                 .padding()
-
+            
             Button("Login") {
                 login()
             }
@@ -107,24 +109,31 @@ struct LoginView: View {
                 isShowingSignup = true
             }
             .padding()
-
+            
             // ✅ Show SignupView as a sheet
             .navigationDestination(isPresented: $isShowingSignup) {
                 SignupView()
             }
-
-
+            
+            
             Text(loginError)
                 .font(.custom("AvenirNext-Regular", size: 22))
                 .foregroundColor(.red)
         }
     }
-
+    
     func login() {
-        if let user = users.first(where: { $0.email == email && $0.password == password }) {
-            userSession.logIn(user: user)
-        } else {
-            loginError = "Invalid email or password"
+        let trimmedEmail = email.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+            let trimmedPassword = password.trimmingCharacters(in: .whitespacesAndNewlines)
+
+            if let user = users.first(where: {
+                $0.email.lowercased() == trimmedEmail && $0.password == trimmedPassword
+            }) {
+                userSession.logIn(user: user)
+            } else {
+                print("❌ Invalid login attempt — Entered email: \(trimmedEmail), password: \(trimmedPassword)")
+                print("Available users: \(users.map { "\($0.email) / \($0.password)" })")
+                loginError = "Invalid email or password"
+            }
         }
     }
-}

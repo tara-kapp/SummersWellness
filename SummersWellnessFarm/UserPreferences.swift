@@ -66,7 +66,7 @@ struct UserPreferencesView: View {
                         .cornerRadius(10)
                         .padding()
                 }
-
+                // output
                 Text(aiRecommendation)
                     .font(.custom("AvenirNext-Regular", size: 17))
                     .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
