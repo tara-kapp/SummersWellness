@@ -231,8 +231,8 @@ struct BookingView: View {
                 }
             }
             .padding()
-            .background(availableSlots >= bookedSlots ? Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85) : Color.gray)
-            .foregroundColor(Color(red: 228/255, green: 173/255, blue: 102/255).opacity(0.03))
+            .background(availableSlots >= bookedSlots ? Color(red: 67/255, green: 103/255, blue: 70/255).opacity(0.85) : Color.gray)
+            .foregroundColor(.white)
             .cornerRadius(10)
             .disabled(selectedTime == "Select a Time" || selectedDay == "Select a Day" || bookedSlots > availableSlots)
             
