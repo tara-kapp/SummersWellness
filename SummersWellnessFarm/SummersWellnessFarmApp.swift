@@ -10,10 +10,13 @@ import SwiftUI
 
 @main
 struct SummersWellnessFarmApp: App {
+    @StateObject private var userSession = UserSession()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .modelContainer(for: [User.self, Booking.self, Activity.self])
+                .environmentObject(userSession)
             
         }
     }

@@ -8,78 +8,57 @@
 import SwiftUI
 import SwiftData
 
-
 struct LoginView: View {
-    @Environment(\.modelContext) private var modelContext
+    @EnvironmentObject var userSession: UserSession
+    @Environment(\.modelContext) var modelContext
     @State private var email = ""
     @State private var password = ""
     @State private var loginError = ""
-    @State private var loggedInUser: User?
     @State private var isShowingSignup = false
-    @AppStorage("isAuthenticated") private var isAuthenticated = false
-    @AppStorage("loggedInUserEmail") private var loggedInUserEmail = ""
 
+    // ✅ Move @Query to class-level
+    @Query private var users: [User]
 
     var body: some View {
         NavigationStack {
             VStack {
-                if isAuthenticated, let user = loggedInUser {
+                // LOGO + HEADER
+                               VStack(spacing: 8) {
+                                   Image("Logo")
+                                       .resizable()
+                                       .scaledToFit()
+                                       .frame(width: 300, height: 300)
+                               }
+                               .padding(.top)
+                
+                if userSession.isAuthenticated, let user = userSession.loggedInUser {
                     Text("Welcome, \(user.name)!")
-                        .font(.custom("AvenirNext-Regular", size: 28))
+                        .font(.title)
                         .padding()
-                    
-                    
+
                     Text("Select Your Dashboard:")
-                        .font(.custom("AvenirNext-Regular", size: 17))
+                        .font(.headline)
                         .padding(.top)
-                    
-                    // Select Dashboard Type
+
                     ForEach(DashboardType.allCases, id: \.self) { type in
                         NavigationLink(value: type) {
                             Text("\(type.rawValue) Dashboard")
                         }
-                        .buttonStyle(.borderedProminent)
+                        .modifier(CustomButtonStyle())
                         .padding()
-                        .onTapGesture {
-                            print("Dashboard type selected: \(type.rawValue)")
-                        }}
+                    }
+
+                    Button("Logout") {
+                        userSession.logout()
+                    }
+                    .foregroundColor(.red)
+                    .padding()
                 } else {
-                    // Login Form
-                    Text("Login to Your Account")
-                        .font(.custom("AvenirNext-Regular", size: 15))
-                        .padding()
-                    
-                    TextField("Email", text: $email)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .autocapitalization(.none)
-                        .padding()
-                    
-                    SecureField("Password", text: $password)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding()
-                    
-                    // Login Button
-                    Button("Login") {
-                        print("Login button clicked")
-                        login()
-                        
-                    }
-                    .padding()
-                    
-                    Text(loginError)
-                        .foregroundColor(.red)
-                    
-                    // Sign Up Button
-                    Button("Don't have an account? Sign Up") {
-                        isShowingSignup = true
-                    }
-                    .foregroundColor(.blue)
-                    .padding()
+                    loginForm
                 }
             }
-            // ✅ Attach navigationDestination to NavigationStack directly!
             .navigationDestination(for: DashboardType.self) { type in
-                if let user = loggedInUser {
+                if let user = userSession.loggedInUser {
                     switch type {
                     case .personal:
                         Dashboard(viewModel: DashboardViewModel(user: user, dashboardType: type))
@@ -92,41 +71,60 @@ struct LoginView: View {
                     Text("Error: No user found")
                 }
             }
+            .onAppear {
+                userSession.loadLoggedInUser()
+            }
+        }
+    }
+
+    var loginForm: some View {
+        VStack {
+            Text("Login to Your Account")
+                .font(.custom("AvenirNext-Regular", size: 34))
+                .padding()
+
+            TextField("Email", text: $email)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .autocapitalization(.none)
+                .font(.custom("AvenirNext-Regular", size: 22))
+                .background(Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
+                .padding()
+
+            SecureField("Password", text: $password)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .font(.custom("AvenirNext-Regular", size: 22))
+                .background(Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
+                .padding()
+
+            Button("Login") {
+                login()
+            }
+            .font(.custom("AvenirNext-Regular", size: 22))
+            .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
+            .padding()
+            
+            Button("Create an Account") {
+                isShowingSignup = true
+            }
+            .padding()
+
+            // ✅ Show SignupView as a sheet
             .navigationDestination(isPresented: $isShowingSignup) {
                 SignupView()
             }
+
+
+            Text(loginError)
+                .font(.custom("AvenirNext-Regular", size: 22))
+                .foregroundColor(.red)
         }
     }
 
-    func loadUser() {
-        print("Attempting to load user from AppStorage")
-        if !loggedInUserEmail.isEmpty {
-            let descriptor = FetchDescriptor<User>(predicate: #Predicate { $0.email == loggedInUserEmail })
-            if let user = try? modelContext.fetch(descriptor).first {
-                loggedInUser = user
-                print("User loaded: \(user.name)")
-            } else {
-                print("Error: User not found with email: \(loggedInUserEmail)")
-            }
-        } else {
-            print("No email found in AppStorage")
-        }
-    }
-
-    
-    // Login Function
     func login() {
-        do {
-            let descriptor = FetchDescriptor<User>(predicate: #Predicate { $0.email == email && $0.password == password })
-            if let user = try modelContext.fetch(descriptor).first {
-                loggedInUser = user
-                isAuthenticated = true
-            } else {
-                loginError = "Invalid email or password"
-            }
-        } catch {
-            loginError = "Error fetching user: \(error.localizedDescription)"
+        if let user = users.first(where: { $0.email == email && $0.password == password }) {
+            userSession.logIn(user: user)
+        } else {
+            loginError = "Invalid email or password"
         }
     }
 }
-

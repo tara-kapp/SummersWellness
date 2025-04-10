@@ -3,6 +3,7 @@ import SwiftData
 
 struct Dashboard: View {
     @Environment(\.modelContext) private var modelContext
+    @EnvironmentObject var userSession: UserSession
     @Query var bookings: [Booking]
     var viewModel: DashboardViewModel // Observe the view model
     
@@ -28,12 +29,6 @@ struct Dashboard: View {
             // Explore the farm button
             NavigationLink(destination: ExploreTheFarm()){
                 Text("Explore The Farm")
-                    .modifier(CustomButtonStyle())
-            }
-            
-            // Quiz button
-            NavigationLink(destination: ActivityRecs()){
-                Text("Find Activity Recommendations")
                     .modifier(CustomButtonStyle())
             }
             
@@ -66,8 +61,11 @@ struct Dashboard: View {
         }
         .navigationTitle("Dashboard")
     }
+<<<<<<< HEAD
+=======
     
     
+>>>>>>> main
     func fetchBookings() {
         // Reload bookings from the model context
         do {
@@ -188,6 +186,14 @@ struct Dashboard: View {
         .background(Color.white)
         //.navigationTitle("Dashboard")
     }
+<<<<<<< HEAD
+}
+    
+#Preview {
+    Dashboard()
+        .modelContainer(for: Booking.self)
+    
+=======
 
     func fetchBookings() {
         do {
@@ -215,6 +221,7 @@ import SwiftUI
 import SwiftData
 
 struct Dashboard: View {
+    @StateObject var guestPreferencesViewModel = GuestPreferencesViewModel()
     @Environment(\.modelContext) private var modelContext
     @Query var bookings: [Booking]
     var viewModel: DashboardViewModel
@@ -282,12 +289,14 @@ struct Dashboard: View {
                 // BUTTON GRID
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
                     DashboardWideButton(title: "Book Activities")
-                    DashboardWideButton(title: "Explore The Farm")
+                    DashboardWideButton(title: "Explore the Farm")
                     DashboardWideButton(title: "Find Activity Recommendations")
                     DashboardWideButton(title: "SmartWatch Integration")
-                    DashboardWideButton(title: "Food Dashboard")
+                    DashboardWideButton(title: "Food Preferences")
                     DashboardWideButton(title: "Health")
-                    DashboardWideButton(title: "Personalized Recommendations")
+                    DashboardWideButton(title: "Meal Recommender", guestModel: guestPreferencesViewModel)
+                    DashboardWideButton(title: "Dietary Restrictions", guestModel: guestPreferencesViewModel)
+
                 }
                 .padding(.horizontal, 24)
                 .padding(.bottom, 40)
@@ -316,13 +325,14 @@ struct Dashboard: View {
             "- \(booking.activityName) on \(booking.selectedDay) at \(booking.selectedTime) for \(booking.bookedSlots) people"
         }.joined(separator: "\n")
     }
+
 }
 
 //Dashboard Button View
 struct DashboardWideButton: View {
     var title: String
-    var color: Color = Color(red: 67/255, green: 103/255, blue: 70/255)
-        .opacity(0.85)
+    var color: Color = Color(red: 67/255, green: 103/255, blue: 70/255).opacity(0.85)
+    var guestModel: GuestPreferencesViewModel? = nil
 
     var body: some View {
         NavigationLink(destination: destinationForTitle(title)) {
@@ -332,7 +342,7 @@ struct DashboardWideButton: View {
                     .fontWeight(.medium)
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity, alignment: .center) // ✅ This locks it left
+                    .frame(maxWidth: .infinity, alignment: .center)
             }
             .padding()
             .frame(maxWidth: .infinity, minHeight: 130)
@@ -346,13 +356,31 @@ struct DashboardWideButton: View {
     func destinationForTitle(_ title: String) -> some View {
         switch title {
         case "Book Activities": BookActivities()
-        case "Explore The Farm": ExploreTheFarm()
-        case "Find Activity Recommendations": ActivityRecs()
+        case "Explore the Farm": ExploreTheFarm()
+        case "Find Activity Recommendations": UserPreferencesView()
         case "SmartWatch Integration": Watch()
-        case "Food Dashboard": FoodPreferencesView()
+        case "Food Preferences": FoodPreferencesView()
         case "Health": CalorieTrackerForm()
         case "Personalized Recommendations": Recommendations()
-        default: EmptyView()
+            // corporate
+        case "Book Large Group Activities": LargeBookActivities()
+        case "Book Rental Space": CorporateBookingView()
+            //wedding
+        case "View Resort Spaces and Themes": ResortPhotoGallery()
+        case "Book a Tour": BookTour()
+        case "Meal Recommender":
+                    if let model = guestModel {
+                        MealView(viewModel: model)
+                    } else {
+                        Text("No data")
+                    }
+        case "Dietary Restrictions":
+            if let model = guestModel {
+                FoodFormView(viewModel: model)
+            } else {
+                Text("No data")
+            }
+        default: Text("Unknown destination for: \(title)")
         }
     }
 }

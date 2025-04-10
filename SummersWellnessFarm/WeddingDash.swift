@@ -10,6 +10,7 @@
 
 
 struct WeddingDashboard: View {
+    @EnvironmentObject var userSession: UserSession
     let viewModel: DashboardViewModel
     
     var body: some View {
@@ -38,16 +39,6 @@ struct WeddingDashboard: View {
             
             NavigationLink(destination: CorporateBookingView()){
                 Text("Book Rental Space")
-                    .modifier(CustomButtonStyle())
-            }
-            
-            NavigationLink(destination: ResortPhotoGallery()){
-                Text("View Resort Spaces and Themes")
-                    .modifier(CustomButtonStyle())
-            }
-            
-            NavigationLink(destination: BookTour()){
-                Text("Book a Tour")
                     .modifier(CustomButtonStyle())
             }
 
@@ -107,8 +98,8 @@ struct WeddingDashboard: View {
 
                 // BUTTON GRID
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
-                    DashboardWideButton(title: "Book Activities")
-                    DashboardWideButton(title: "Explore The Farm")
+                    DashboardWideButton(title: "Book Large Group Activities")
+                    DashboardWideButton(title: "Explore the Farm")
                     DashboardWideButton(title: "Book Rental Space")
                     DashboardWideButton(title: "View Resort Spaces and Themes")
                     DashboardWideButton(title: "Book a Tour")

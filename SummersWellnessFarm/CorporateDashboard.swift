@@ -5,52 +5,14 @@
 //  Created by Tia Li on 3/11/25.
 //
 
-/*import SwiftUI
-import SwiftData
 
-struct CorporateDashboard: View {
-    let viewModel: DashboardViewModel
-    
-    var body: some View {
-        VStack{
-            Text("Corporate Dashboard")
-                .font(.custom("AvenirNext-Regular", size: 34))
-                .padding()
-
-            SectionView(title: "Group Info", content: """
-            - Primary Contact Name: Jane Doe
-            - Email: example@summerswellness.com
-            - Group Size: 50 Guests
-            """)
-                
-                
-                NavigationLink(destination: LargeBookActivities()){
-                    Text("Book Activities")
-                        .modifier(CustomButtonStyle())
-                }
-                
-                
-                NavigationLink(destination: ExploreTheFarm()){
-                    Text("Explore The Farm")
-                        .modifier(CustomButtonStyle())
-                }
-                
-                NavigationLink(destination: CorporateBookingView()){
-                    Text("Book Rental Space")
-                        .modifier(CustomButtonStyle())
-                }
-                
-                .navigationTitle("Dashboard")
-            }
-        }
-    }
-}*/
 
 //LAYOUT 1
 import SwiftUI
 import SwiftData
 
 struct CorporateDashboard: View {
+    @EnvironmentObject var userSession: UserSession
     let viewModel: DashboardViewModel
 
     var body: some View {
@@ -98,8 +60,8 @@ struct CorporateDashboard: View {
 
                 // BUTTON GRID
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
-                    DashboardWideButton(title: "Book Activities")
-                    DashboardWideButton(title: "Explore The Farm")
+                    DashboardWideButton(title: "Book Large Group Activities")
+                    DashboardWideButton(title: "Explore the Farm")
                     DashboardWideButton(title: "Book Rental Space")
                 }
                 .padding(.horizontal, 24)
@@ -109,4 +71,5 @@ struct CorporateDashboard: View {
         }
         .background(Color(red: 228/255, green: 173/255, blue: 102/255).opacity(0.03))
     }
+
 }
