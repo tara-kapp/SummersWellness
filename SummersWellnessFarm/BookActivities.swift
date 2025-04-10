@@ -149,7 +149,7 @@ struct ActivityRow: View {
                 .multilineTextAlignment(.center)
             
         }
-        .frame(width: 150)
+        .frame(width: 150, height: 175)
         .padding()
         .background(Color(red: 67/255, green: 103/255, blue: 70/255).opacity(0.85))
         .cornerRadius(10)
