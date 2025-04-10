@@ -28,6 +28,10 @@ struct CalorieTrackerForm: View {
     @State private var dinner: String = ""
     @State private var snack: String = ""
     
+    @State private var steps: Double? = nil
+    @State private var calories: Double? = nil
+    @State private var hoursOfSleep: Double? = nil
+    
     @State private var resultToShow: CalorieResult? = nil
     @State private var isLoading = false
 
@@ -42,14 +46,19 @@ struct CalorieTrackerForm: View {
         "Farm Tour",
         "Swimming",
         "Cycling",
-        "Cooking Class"
+        "Cooking Class",
+        "Running"
     ]
     let intensityOptions = ["Light", "Moderate", "Vigorous"]
 
     var body: some View {
             ScrollView {
                 VStack(spacing: 20) {
-
+                    Text("Health & Wellness Tracker!")
+                        .font(.largeTitle)
+                        .font(.custom("AvenirNext-Bold", size: 34))
+                        .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
+                        .padding(.bottom, 10)
                     // 🌟 User Info
                     GroupBox(label: Label("Your Info", systemImage: "person.fill")) {
                         VStack(spacing: 10) {
@@ -135,6 +144,14 @@ struct CalorieTrackerForm: View {
                             }
                         }
                     }
+                    
+                    GroupBox(label: Label("General Info", systemImage: "flame.fill")){
+                        VStack(alignment: .leading, spacing: 15) {
+                            KnownItemEntry(title: "Steps (Walking Only)", itemValue: $steps)
+                            KnownItemEntry(title: "Known Calories Burned(Do not do this and enter activities)", itemValue: $calories)
+                            KnownItemEntry(title: "Known Hours of Sleep", itemValue: $hoursOfSleep)
+                        }
+                    }
 
                     // 🍽️ Meals
                     GroupBox(label: Label("Today's Meals", systemImage: "fork.knife")) {
@@ -147,7 +164,10 @@ struct CalorieTrackerForm: View {
                     }
 
                     // ✅ Submit Button
-                    Button("Submit Daily Log") {
+                                        Button("Submit") {
+                                            // Dismiss any focused fields.
+                                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                            
                                             isLoading = true
                                             resultToShow = nil
 
@@ -159,6 +179,9 @@ struct CalorieTrackerForm: View {
                                                 selectedActivities: selectedActivities,
                                                 activityDurations: activityDurations,
                                                 activityIntensity: activityIntensity,
+                                                steps: steps,
+                                                calories: calories,
+                                                hoursOfSleep: hoursOfSleep,
                                                 breakfast: breakfast,
                                                 lunch: lunch,
                                                 dinner: dinner,
@@ -177,6 +200,7 @@ struct CalorieTrackerForm: View {
                                         }
                                         .buttonStyle(.borderedProminent)
                                         .disabled(isLoading)
+
                                     }
                                     .padding()
                                 }
@@ -234,6 +258,45 @@ struct MealEntry: View {
         }
     }
 }
+
+struct KnownItemEntry: View {
+    var title: String
+    @Binding var itemValue: Double?  // This is the external binding
+    
+    // Local state to hold the text input.
+    @State private var textValue: String = ""
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(title)
+                .font(.subheadline)
+                .fontWeight(.semibold)
+            TextField("How many?", text: $textValue)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .keyboardType(.decimalPad)
+                .onChange(of: textValue) { newValue in
+                    let trimmed = newValue.trimmingCharacters(in: .whitespacesAndNewlines)
+                    if trimmed.isEmpty {
+                        itemValue = nil
+                        print("Text empty, set itemValue to nil")
+                    } else if let value = Double(trimmed) {
+                        itemValue = value
+                        print("Converted '\(trimmed)' to \(value)")
+                    } else {
+                        itemValue = nil
+                        print("Conversion failed for: '\(trimmed)'")
+                    }
+                }
+        }
+        .onAppear {
+            // When this view first appears, if there's an existing value, show it.
+            if let value = itemValue {
+                textValue = String(value)
+            }
+        }
+    }
+}
+
 
 #Preview {
     CalorieTrackerForm()

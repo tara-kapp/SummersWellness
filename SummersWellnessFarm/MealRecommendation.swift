@@ -22,22 +22,32 @@ struct MealView: View {
 
     var body: some View {
         VStack {
-            Text("AI Meal Generator")
+            Text("Let us help you pick your next meal!")
                 .font(.largeTitle)
                 .font(.custom("AvenirNext-Bold", size: 34))
                 .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                 .padding(.bottom, 10)
-
-            // 🔹 Meal Selection Section
-            Section {
-                Picker("Select a Meal", selection: $selectedMeal) {
-                    ForEach(mealOptions, id: \.self) {
-                        Text($0)
-                    }
+                
+            VStack(alignment: .center, spacing: 4) {
+                Text("If you have any Dietary Restrictions please go to the Dietary Restrictions form and add any information necessary to enjoy your meal, otherwise the AI will assume that you have no restrictions. ")
+                NavigationLink(destination: FoodFormView(viewModel: viewModel)) {
+                    Text("Go to Dietary Restrictions Form")
+                        .foregroundColor(.blue)
                 }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding()
             }
+                .font(.custom("AvenirNext-Regular", size: 18))
+                .foregroundColor(.secondary)
+        
+            // 🔹 Meal Selection Section
+        Section {
+            Picker("Select a Meal", selection: $selectedMeal) {
+                ForEach(mealOptions, id: \.self) {
+                    Text($0)
+                }
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .padding()
+        }
 
             Text("Select Your Preferences")
                 .font(.title2)
@@ -93,13 +103,28 @@ struct MealView: View {
                     .padding()
             }
 
-            Text(aiRecommendation)
-                .font(.custom("AvenirNext-Regular", size: 17))
-                .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
-                .padding()
-                .frame(maxWidth: .infinity)
+            if aiRecommendation == "Your recommendation will appear here." {
+                Text(aiRecommendation)
+                    .font(.custom("AvenirNext-Regular", size: 17))
+                    .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
+                    .cornerRadius(10)
+            } else {
+                ScrollView(.vertical) {
+                    Text(aiRecommendation)
+                        .font(.custom("AvenirNext-Regular", size: 17))
+                        .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
+                        .padding()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                .frame(maxHeight: 300, alignment: .top)
                 .background(Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
                 .cornerRadius(10)
+            }
+            Text("TODO: Eventually a NavLink to a meal Booking Page")
         }
         .padding()
         .background(Color(red: 228/255, green: 173/255, blue: 102/255).opacity(0.03))

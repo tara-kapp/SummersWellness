@@ -149,7 +149,7 @@ struct ActivityRow: View {
                 .multilineTextAlignment(.center)
             
         }
-        .frame(width: 150)
+        .frame(width: 150, height: 175)
         .padding()
         .background(Color(red: 67/255, green: 103/255, blue: 70/255).opacity(0.85))
         .cornerRadius(10)
@@ -164,6 +164,8 @@ struct BookingView: View {
     @State private var selectedDay: String = "Select a Day"
     @State private var bookedSlots: Int = 1
     @Query private var existingBookings: [Booking]
+    
+    @State private var showBookingAlert = false
 
     var body: some View {
         VStack(spacing: 20) {
@@ -172,13 +174,12 @@ struct BookingView: View {
                 .fontWeight(.bold)
                 .padding()
             
-            Text("\(activity.activityDescription)")
-                            .font(.custom("AvenirNext-Regular", size: 22))
-                            .padding()
+            Text(activity.activityDescription)
+                .font(.custom("AvenirNext-Regular", size: 22))
+                .padding()
 
             Picker("Select Day", selection: $selectedDay) {
                 Text("Select a Day").tag("Select a Day")
-                    .font(.custom("AvenirNext-Regular", size: 17))
                 ForEach(activity.daysAvailable, id: \.self) { day in
                     Text(day).tag(day)
                 }
@@ -188,7 +189,6 @@ struct BookingView: View {
             
             Picker("Select Time", selection: $selectedTime) {
                 Text("Select a Time").tag("Select a Time")
-                    .font(.custom("AvenirNext-Regular", size: 17))
                 ForEach(activity.times, id: \.self) { time in
                     Text(time).tag(time)
                 }
@@ -200,7 +200,6 @@ struct BookingView: View {
                 .font(.custom("AvenirNext-Regular", size: 17))
                 .padding()
             
-            // Capacity Check
             let totalBookedSlots = calculateTotalBookedSlots()
             let availableSlots = activity.capacity - totalBookedSlots
 
@@ -220,33 +219,43 @@ struct BookingView: View {
                     )
                     
                     modelContext.insert(newBooking)
-
                     do {
                         try modelContext.save()
+                        // Set alert state to true after booking saved.
+                        showBookingAlert = true
                     } catch {
                         print("Failed to save booking: \(error)")
                     }
-
-                    dismiss() // Close the BookingView after booking
                 }
             }
             .padding()
-            .background(availableSlots >= bookedSlots ? Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85) : Color.gray)
-            .foregroundColor(Color(red: 228/255, green: 173/255, blue: 102/255).opacity(0.03))
+            .background(availableSlots >= bookedSlots ? Color(red: 67/255, green: 103/255, blue: 70/255).opacity(0.85) : Color.gray)
+            .foregroundColor(.white)
             .cornerRadius(10)
             .disabled(selectedTime == "Select a Time" || selectedDay == "Select a Day" || bookedSlots > availableSlots)
             
             Spacer()
         }
         .padding()
+        .alert(isPresented: $showBookingAlert) {
+            Alert(
+                title: Text("Booking Confirmed"),
+                message: Text("You have successfully booked \(activity.name) on \(selectedDay) at \(selectedTime)."),
+                dismissButton: .default(Text("OK"), action: {
+                    // Dismiss the view once the user taps OK.
+                    dismiss()
+                })
+            )
+        }
     }
-
+    
     func calculateTotalBookedSlots() -> Int {
         return existingBookings
             .filter { $0.activityID == activity.id && $0.selectedDay == selectedDay && $0.selectedTime == selectedTime }
             .reduce(0) { $0 + $1.bookedSlots }
     }
 }
+
 
 
 #Preview {

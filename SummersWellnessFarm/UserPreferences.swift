@@ -12,7 +12,7 @@ struct UserPreferencesView: View {
 
     var body: some View {
             VStack {
-                Text("Select Your Preferences")
+                Text("What do you hope to get out of your trip?")
                     .font(.largeTitle)
                     .font(.custom("AvenirNext-Bold", size: 34))
                     .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
@@ -31,7 +31,7 @@ struct UserPreferencesView: View {
 
                                     .padding()
                                     .frame(maxWidth: .infinity)
-                                    .background(selectedPreferences.contains(preference) ? Color(red: 67/255, green: 103/255, blue: 70/255).opacity(0.1) : Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
+                                    .background(selectedPreferences.contains(preference) ? Color(red: 67/255, green: 103/255, blue: 70/255).opacity(0.8) : Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
                                     .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                                     .cornerRadius(10)
                             }
@@ -67,13 +67,32 @@ struct UserPreferencesView: View {
                         .padding()
                 }
                 // output
-                Text(aiRecommendation)
-                    .font(.custom("AvenirNext-Regular", size: 17))
-                    .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
-                    .padding()
-                    .frame(maxWidth: .infinity)
+                if aiRecommendation == "Your recommendation will appear here." {
+                    Text(aiRecommendation)
+                        .font(.custom("AvenirNext-Regular", size: 17))
+                        .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
+                        .cornerRadius(10)
+                } else {
+                    ScrollView(.vertical) {
+                        Text(aiRecommendation)
+                            .font(.custom("AvenirNext-Regular", size: 17))
+                            .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
+                            .padding()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    .frame(maxHeight: 300, alignment: .top)
                     .background(Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
                     .cornerRadius(10)
+                }
+
+                NavigationLink(destination: BookActivities()) {
+                    Text("Go to Book Activities Page")
+                        .foregroundColor(.blue)
+                }
             }
             .padding()
             .background(Color(red: 228/255, green: 173/255, blue: 102/255).opacity(0.03))
