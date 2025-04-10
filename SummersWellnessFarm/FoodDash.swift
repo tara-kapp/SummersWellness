@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FoodDash: View {
+    @StateObject var guestPreferencesViewModel = GuestPreferencesViewModel()
     var body: some View {
         ScrollView {
             VStack(spacing: 30) {
@@ -26,16 +27,31 @@ struct FoodDash: View {
                 }
                 .padding(.top)
                 
-                
-                NavigationLink(destination: FoodPreferencesView()){
-                    Text("Benefits of Fresh Grown Food")
-                        .modifier(CustomButtonStyle())
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
+                    DashboardWideButton(title: "Benefits of Fresh Grown Food")
+                    DashboardWideButton(title: "Dietary Restrictions Form", guestModel: guestPreferencesViewModel)
+                    DashboardWideButton(title: "Meal Recommender", guestModel: guestPreferencesViewModel)
+                    DashboardWideButton(title: "TODO: book a meal")
                 }
                 
-                NavigationLink(destination: FoodFormView(viewModel: GuestPreferencesViewModel())) {
-                    Text("Dietary Restrictions Form")
-                        .modifier(CustomButtonStyle())
-                }
+                .padding(.horizontal, 24)
+                .padding(.bottom, 40)
+            }
+            .frame(maxWidth: .infinity)
+                
+//            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
+//                DashboardWideButton(title: "Benefits of Fresh Grown Food")
+//                DashboardWideButton(title: "Dietary Restrictions Form")
+//            }
+//                NavigationLink(destination: FoodPreferencesView()){
+//                    Text("Benefits of Fresh Grown Food")
+//                        .modifier(CustomButtonStyle())
+//                }
+//                
+//                NavigationLink(destination: FoodFormView(viewModel: GuestPreferencesViewModel())) {
+//                    Text("Dietary Restrictions Form")
+//                        .modifier(CustomButtonStyle())
+//                }
                 
                 
             }
@@ -43,4 +59,3 @@ struct FoodDash: View {
         }
     }
     
-}

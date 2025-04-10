@@ -69,10 +69,7 @@ struct Dashboard: View {
                     DashboardWideButton(title: "Activity Recommendations")
                     DashboardWideButton(title: "SmartWatch Integration")
                     DashboardWideButton(title: "Health Tracker")
-                    DashboardWideButton(title: "Calorie Calculator")
                     DashboardWideButton(title: "Explore the Farm")
-                    DashboardWideButton(title: "Meal Recommender", guestModel: guestPreferencesViewModel)
-                    DashboardWideButton(title: "Dietary Restrictions", guestModel: guestPreferencesViewModel)
 
                 }
                 .padding(.horizontal, 24)
@@ -134,10 +131,9 @@ struct DashboardWideButton: View {
         switch title {
         case "Book Activities": BookActivities()
         case "Explore the Farm": ExploreTheFarm()
-        case "Find Activity Recommendations": UserPreferencesView()
+        case "Activity Recommendations": UserPreferencesView()
         case "SmartWatch Integration": Watch()
         case "Health Tracker": CalorieTrackerForm()
-        case "Calorie Calculator": CalorieTrackerForm()
         case "Personalized Recommendations": Recommendations()
         case "Farm Fresh Food": FoodDash()
             // corporate
@@ -152,12 +148,13 @@ struct DashboardWideButton: View {
                     } else {
                         Text("No data")
                     }
-        case "Dietary Restrictions":
+        case "Dietary Restrictions Form":
             if let model = guestModel {
                 FoodFormView(viewModel: model)
             } else {
                 Text("No data")
             }
+        case "Benefits of Fresh Grown Food": FoodPreferencesView()
         default: Text("Unknown destination for: \(title)")
         }
     }
