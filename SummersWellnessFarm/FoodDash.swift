@@ -9,41 +9,38 @@ import SwiftUI
 
 struct FoodDash: View {
     var body: some View {
-        VStack{
-            Text("Food Dashboard")
-                .font(.custom("AvenirNext-Regular", size: 34))
-                .padding()
-            SectionView(title: "Personal Info", content: """
-            - Name: Jane Doe
-            - Room Number: 301
-            - Email: example@summerswellness.com
-            """)
-            
-            SectionView(title: "Booked Activities", content: """
-            - Farm to Table Experience: 2/28 at 7:00pm
-            - Outdoor Yoga: 2/29 at 8:00am
-            - Massage: 2/29 at 11:00am
-            """)
-            // Activities button
-            
-            // Explore the farm button
-            
-            NavigationLink(destination: FarmToTableView()){
-                Text("Farm to Table info")
-                    .modifier(CustomButtonStyle())
+        ScrollView {
+            VStack(spacing: 30) {
+                
+                // LOGO + HEADER
+                VStack(spacing: 8) {
+                    Image("Logo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 180, height: 180)
+                    
+                    
+                    Capsule()
+                        .frame(width: 60, height: 4)
+                        .foregroundColor(Color(red: 228/255, green: 173/255, blue: 102/255))
+                }
+                .padding(.top)
+                
+                
+                NavigationLink(destination: FoodPreferencesView()){
+                    Text("Benefits of Fresh Grown Food")
+                        .modifier(CustomButtonStyle())
+                }
+                
+                NavigationLink(destination: FoodFormView(viewModel: GuestPreferencesViewModel())) {
+                    Text("Dietary Restrictions Form")
+                        .modifier(CustomButtonStyle())
+                }
+                
+                
             }
-            
-            NavigationLink(destination: FoodFormView(viewModel: GuestPreferencesViewModel())) {
-                Text("Food Preferences")
-                    .modifier(CustomButtonStyle())
-            }
-
-            
+            .navigationTitle("Food Dashboard")
+        }
     }
-        .navigationTitle("Dashboard")
-    }
-}
-
-#Preview {
-    FoodDash()
+    
 }

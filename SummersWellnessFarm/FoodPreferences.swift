@@ -15,12 +15,12 @@ struct FoodPreferencesView: View {
 
     //List of all the options for the user to select
     let preferences = [
-        "Watermelons", "Blueberries", "Blackberries", "Strawberries", "Peppers", "Okra", "Collards", "Kyla", "Peaches", "Figs", "Persimmon", "Tomatoes", "Red Kuri Squash",
+        "Watermelons", "Blueberries", "Blackberries", "Strawberries", "Peppers", "Okra", "Collards", "Kale", "Peaches", "Figs", "Persimmon", "Tomatoes", "Red Kuri Squash",
     ]
 
     var body: some View {
             VStack {
-                Text("Select Your Preferences")
+                Text("Learn more about the food we grow!")
 
                     .font(.largeTitle)
 
@@ -65,7 +65,7 @@ struct FoodPreferencesView: View {
                         }
                     }
                 }) {
-                    Text("Get Recommendation")
+                    Text("Get Personalized Recommendation")
 
                         .font(.title2)
 

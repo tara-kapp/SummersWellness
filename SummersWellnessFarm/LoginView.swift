@@ -121,10 +121,17 @@ struct LoginView: View {
     }
 
     func login() {
-        if let user = users.first(where: { $0.email == email && $0.password == password }) {
-            userSession.logIn(user: user)
-        } else {
-            loginError = "Invalid email or password"
-        }
-    }
+            let trimmedEmail = email.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+                let trimmedPassword = password.trimmingCharacters(in: .whitespacesAndNewlines)
+
+                if let user = users.first(where: {
+                    $0.email.lowercased() == trimmedEmail && $0.password == trimmedPassword
+                }) {
+                    userSession.logIn(user: user)
+                } else {
+                    print("❌ Invalid login attempt — Entered email: \(trimmedEmail), password: \(trimmedPassword)")
+                    print("Available users: \(users.map { "\($0.email) / \($0.password)" })")
+                    loginError = "Invalid email or password"
+                }
+            }
 }
