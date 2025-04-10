@@ -19,7 +19,7 @@ struct FoodDash: View {
                         .scaledToFit()
                         .frame(width: 180, height: 180)
                     
-        
+                    
                     Capsule()
                         .frame(width: 60, height: 4)
                         .foregroundColor(Color(red: 228/255, green: 173/255, blue: 102/255))
@@ -42,4 +42,5 @@ struct FoodDash: View {
             .navigationTitle("Food Dashboard")
         }
     }
+    
 }

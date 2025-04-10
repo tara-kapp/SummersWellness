@@ -15,11 +15,10 @@ struct LoginView: View {
     @State private var password = ""
     @State private var loginError = ""
     @State private var isShowingSignup = false
-    
+
     // ✅ Move @Query to class-level
     @Query private var users: [User]
-    
-    
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -36,11 +35,11 @@ struct LoginView: View {
                     Text("Welcome, \(user.name)!")
                         .font(.title)
                         .padding()
-                    
+
                     Text("Select Your Dashboard:")
                         .font(.headline)
                         .padding(.top)
-                    
+
                     ForEach(DashboardType.allCases, id: \.self) { type in
                         NavigationLink(value: type) {
                             Text("\(type.rawValue) Dashboard")
@@ -48,7 +47,7 @@ struct LoginView: View {
                         .modifier(CustomButtonStyle())
                         .padding()
                     }
-                    
+
                     Button("Logout") {
                         userSession.logout()
                     }
@@ -78,26 +77,26 @@ struct LoginView: View {
             }
         }
     }
-    
+
     var loginForm: some View {
         VStack {
             Text("Login to Your Account")
                 .font(.custom("AvenirNext-Regular", size: 34))
                 .padding()
-            
+
             TextField("Email", text: $email)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .autocapitalization(.none)
                 .font(.custom("AvenirNext-Regular", size: 22))
                 .background(Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
                 .padding()
-            
+
             SecureField("Password", text: $password)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .font(.custom("AvenirNext-Regular", size: 22))
                 .background(Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
                 .padding()
-            
+
             Button("Login") {
                 login()
             }
@@ -109,19 +108,19 @@ struct LoginView: View {
                 isShowingSignup = true
             }
             .padding()
-            
+
             // ✅ Show SignupView as a sheet
             .navigationDestination(isPresented: $isShowingSignup) {
                 SignupView()
             }
-            
-            
+
+
             Text(loginError)
                 .font(.custom("AvenirNext-Regular", size: 22))
                 .foregroundColor(.red)
         }
     }
-    
+
     func login() {
         let trimmedEmail = email.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
             let trimmedPassword = password.trimmingCharacters(in: .whitespacesAndNewlines)

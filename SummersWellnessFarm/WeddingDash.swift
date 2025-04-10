@@ -1,4 +1,9 @@
-
+//
+//  WeddingDash.swift
+//  SummersWellnessFarm
+//
+//  Created by Grace Beard on 2/27/25.
+//
 
 //LAYOUT 1
 import SwiftUI

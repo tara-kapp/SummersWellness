@@ -15,13 +15,15 @@ struct FoodPreferencesView: View {
 
     //List of all the options for the user to select
     let preferences = [
-        "Watermelons", "Blueberries", "Blackberries", "Strawberries", "Peppers", "Okra", "Collards", "Kyla", "Peaches", "Figs", "Persimmon", "Tomatoes", "Red Kuri Squash",
+        "Watermelons", "Blueberries", "Blackberries", "Strawberries", "Peppers", "Okra", "Collards", "Kale", "Peaches", "Figs", "Persimmon", "Tomatoes", "Red Kuri Squash",
     ]
 
     var body: some View {
             VStack {
                 Text("Learn more about the food we grow!")
+
                     .font(.largeTitle)
+
                     .font(.custom("AvenirNext-Bold", size: 34))
                     .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                     .padding()
@@ -63,7 +65,7 @@ struct FoodPreferencesView: View {
                         }
                     }
                 }) {
-                    Text("Learn more!")
+                    Text("Get Personalized Recommendation")
 
                         .font(.title2)
 
