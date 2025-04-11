@@ -15,13 +15,15 @@ struct FoodPreferencesView: View {
 
     //List of all the options for the user to select
     let preferences = [
-        "Watermelons", "Blueberries", "Blackberries", "Strawberries", "Peppers", "Okra", "Collards", "Kyla", "Peaches", "Figs", "Persimmon", "Tomatoes", "Red Kuri Squash",
+        "Watermelons", "Blueberries", "Blackberries", "Strawberries", "Peppers", "Okra", "Collards", "Kale", "Peaches", "Figs", "Persimmon", "Tomatoes", "Red Kuri Squash",
     ]
 
     var body: some View {
             VStack {
                 Text("Learn more about the food we grow!")
+
                     .font(.largeTitle)
+
                     .font(.custom("AvenirNext-Bold", size: 34))
                     .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                     .padding()
@@ -40,7 +42,7 @@ struct FoodPreferencesView: View {
 
                                     .padding()
                                     .frame(maxWidth: .infinity)
-                                    .background(selectedPreferences.contains(preference) ? Color(red: 67/255, green: 103/255, blue: 70/255).opacity(0.2) : Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
+                                    .background(selectedPreferences.contains(preference) ? Color(red: 67/255, green: 103/255, blue: 70/255).opacity(0.8) : Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
                                     .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                                     .cornerRadius(10)
                             }
@@ -63,7 +65,7 @@ struct FoodPreferencesView: View {
                         }
                     }
                 }) {
-                    Text("Learn more!")
+                    Text("Get Food Information")
 
                         .font(.title2)
 
@@ -77,13 +79,28 @@ struct FoodPreferencesView: View {
                         .padding()
                 }
 
-                Text(aiRecommendation)
-                    .font(.custom("AvenirNext-Regular", size: 17))
-                    .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
-                    .padding()
-                    .frame(maxWidth: .infinity)
+                if aiRecommendation == "Your recommendation will appear here." {
+                    Text(aiRecommendation)
+                        .font(.custom("AvenirNext-Regular", size: 17))
+                        .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
+                        .cornerRadius(10)
+                } else {
+                    ScrollView(.vertical) {
+                        Text(aiRecommendation)
+                            .font(.custom("AvenirNext-Regular", size: 17))
+                            .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
+                            .padding()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    .frame(maxHeight: 400, alignment: .top)
                     .background(Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
                     .cornerRadius(10)
+                }
+
             }
             .padding()
             .background(Color(red: 228/255, green: 173/255, blue: 102/255).opacity(0.03))

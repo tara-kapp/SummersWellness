@@ -3,6 +3,7 @@ import SwiftUI
 import SwiftData
 
 struct Dashboard: View {
+    @StateObject var guestPreferencesViewModel = GuestPreferencesViewModel()
     @Environment(\.modelContext) private var modelContext
     @Query var bookings: [Booking]
     var viewModel: DashboardViewModel
@@ -68,8 +69,8 @@ struct Dashboard: View {
                     DashboardWideButton(title: "Activity Recommendations")
                     DashboardWideButton(title: "SmartWatch Integration")
                     DashboardWideButton(title: "Health Tracker")
-                    DashboardWideButton(title: "Calorie Calculator")
                     DashboardWideButton(title: "Explore the Farm")
+
                 }
                 .padding(.horizontal, 24)
                 .padding(.bottom, 40)
@@ -105,6 +106,7 @@ struct Dashboard: View {
 struct DashboardWideButton: View {
     var title: String
     var color: Color = Color(red: 67/255, green: 103/255, blue: 70/255).opacity(0.85)
+    var guestModel: GuestPreferencesViewModel? = nil
 
     var body: some View {
         NavigationLink(destination: destinationForTitle(title)) {
@@ -129,10 +131,9 @@ struct DashboardWideButton: View {
         switch title {
         case "Book Activities": BookActivities()
         case "Explore the Farm": ExploreTheFarm()
-        case "Find Activity Recommendations": UserPreferencesView()
+        case "Activity Recommendations": UserPreferencesView()
         case "SmartWatch Integration": Watch()
         case "Health Tracker": CalorieTrackerForm()
-        case "Calorie Calculator": CalorieTrackerForm()
         case "Personalized Recommendations": Recommendations()
         case "Farm Fresh Food": FoodDash()
             // corporate
@@ -141,6 +142,19 @@ struct DashboardWideButton: View {
             //wedding
         case "View Resort Spaces and Themes": ResortPhotoGallery()
         case "Book a Tour": BookTour()
+        case "Meal Recommender":
+                    if let model = guestModel {
+                        MealView(viewModel: model)
+                    } else {
+                        Text("No data")
+                    }
+        case "Dietary Restrictions Form":
+            if let model = guestModel {
+                FoodFormView(viewModel: model)
+            } else {
+                Text("No data")
+            }
+        case "Benefits of Fresh Grown Food": FoodPreferencesView()
         default: Text("Unknown destination for: \(title)")
         }
     }
