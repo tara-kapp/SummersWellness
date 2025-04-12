@@ -13,8 +13,7 @@ struct UserPreferencesView: View {
     var body: some View {
             VStack {
                 Text("What do you hope to get out of your trip?")
-                    .font(.largeTitle)
-                    .font(.custom("AvenirNext-Bold", size: 34))
+                    .font(.custom("AvenirNext-Bold", size: 25))
                     .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                     .padding()
 
@@ -32,7 +31,8 @@ struct UserPreferencesView: View {
                                     .padding()
                                     .frame(maxWidth: .infinity)
                                     .background(selectedPreferences.contains(preference) ? Color(red: 67/255, green: 103/255, blue: 70/255).opacity(0.8) : Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
-                                    .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
+                                    //.foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
+                                    .foregroundColor(selectedPreferences.contains(preference) ? Color.white : Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                                     .cornerRadius(10)
                             }
                         }
@@ -58,7 +58,7 @@ struct UserPreferencesView: View {
                 }) {
                     Text("Get Recommendation")
                         .font(.custom("AvenirNext-Regular", size: 22))
-                        .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
+                        //.foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                         .padding()
                         .frame(maxWidth: .infinity)
                         .background(Color(red: 67/255, green: 103/255, blue: 70/255))
@@ -91,7 +91,8 @@ struct UserPreferencesView: View {
 
                 NavigationLink(destination: BookActivities()) {
                     Text("Go to Book Activities Page")
-                        .foregroundColor(.blue)
+                        .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
+                        .underline(true, color: Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                 }
             }
             .padding()

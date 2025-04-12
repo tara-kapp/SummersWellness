@@ -17,8 +17,8 @@ struct LargeBookActivities: View {
     var body: some View {
             VStack {
                 Text("Book Large Group Activities")
-                    .font(.custom("AvenirNext-Regular", size: 15))
-                    .fontWeight(.bold)
+                    .font(.custom("AvenirNext-Bold", size: 34))
+                    .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                     .padding()
                 
                 ScrollView(.vertical, showsIndicators: false) {

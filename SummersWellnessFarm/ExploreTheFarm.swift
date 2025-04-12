@@ -12,8 +12,8 @@ struct ExploreTheFarm: View {
         VStack {
             //title
             Text("Explore the Farm")
-                .font(.largeTitle)
-                .fontWeight(.bold)
+                .font(.custom("AvenirNext-Bold", size: 34))
+                .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                 .padding(.top, 20)
             
             //buttons for Venues, Food, Activities

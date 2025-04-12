@@ -22,8 +22,7 @@ struct MealView: View {
 
     var body: some View {
         VStack {
-            Text("Let us help you pick your next meal!")
-                .font(.largeTitle)
+            Text("Let us help you pick your next meal")
                 .font(.custom("AvenirNext-Bold", size: 34))
                 .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                 .padding(.bottom, 10)

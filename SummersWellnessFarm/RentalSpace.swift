@@ -30,8 +30,8 @@ struct CorporateBookingView: View {
         VStack(alignment: .leading, spacing: 20) {
             // Title
             Text("Book a Space")
-                .font(.custom("AvenirNext-Regular", size: 34))
-                .fontWeight(.bold)
+                .font(.custom("AvenirNext-Bold", size: 34))
+                .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                 .padding(.horizontal)
             
             // Date Picker
