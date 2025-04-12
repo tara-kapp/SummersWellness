@@ -16,46 +16,15 @@ struct ExploreTheFarm: View {
                 .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                 .padding(.top, 20)
             
-            //buttons for Venues, Food, Activities
-            VStack(spacing: 20) {
-                Button(action: {
-                    //venues button
-                    print("Venues button tapped")
-                }) {
-                    Text("Venues")
-                        .font(.title)
-                        .foregroundColor(.white)
-                        .frame(width: 300, height: 50)
-                        .background(Color.green)
-                        .cornerRadius(10)
-                }
-
-                Button(action: {
-                    //food button
-                    print("Food button tapped")
-                }) {
-                    Text("Food")
-                        .font(.title)
-                        .foregroundColor(.white)
-                        .frame(width: 300, height: 50)
-                        .background(Color.green)
-                        .cornerRadius(10)
-                }
-
-                Button(action: {
-                    //activity button
-                    print("Activities button tapped")
-                }) {
-                    Text("Activities")
-                        .font(.title)
-                        .foregroundColor(.white)
-                        .frame(width: 300, height: 50)
-                        .background(Color.green)
-                        .cornerRadius(10)
-                }
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
+                DashboardWideButton(title: "Venues")
+                DashboardWideButton(title: "Food")
+                DashboardWideButton(title: "Activities")
             }
-            .padding(.top, 20) //space between buttons and title
-
+            
+            //space between buttons and title
+            .padding(.horizontal, 24)
+            .padding(.bottom, 40)
             Spacer() //push everything up
 
             //MAP

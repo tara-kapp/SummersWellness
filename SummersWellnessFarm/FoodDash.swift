@@ -15,15 +15,11 @@ struct FoodDash: View {
                 
                 // LOGO + HEADER
                 VStack(spacing: 8) {
-                    Image("Logo")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 180, height: 180)
+                    Text("Food Dashboard")
+                        .font(.custom("AvenirNext-Bold", size: 34))
+                        .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
+                        .padding()
                     
-                    
-                    Capsule()
-                        .frame(width: 60, height: 4)
-                        .foregroundColor(Color(red: 228/255, green: 173/255, blue: 102/255))
                 }
                 .padding(.top)
                 
@@ -55,7 +51,7 @@ struct FoodDash: View {
                 
                 
             }
-            .navigationTitle("Food Dashboard")
+            
         }
     }
     

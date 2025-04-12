@@ -26,8 +26,8 @@ struct LargeBookActivities: View {
                         ForEach(activitiesByCapacity, id: \.0) { (capacityGroup, activities) in
                             VStack(alignment: .leading) {
                                 Text(capacityGroup)
-                                    .font(.custom("AvenirNext-Regular", size: 22))
-                                    .fontWeight(.bold)
+                                    .font(.custom("AvenirNext-Bold", size: 22))
+                                    .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                                     .padding(.leading, 16)
                                     .padding(.bottom, 8)
                                 

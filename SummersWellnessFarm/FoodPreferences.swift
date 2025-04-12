@@ -21,9 +21,6 @@ struct FoodPreferencesView: View {
     var body: some View {
             VStack {
                 Text("Learn more about the food we grow!")
-
-                    .font(.largeTitle)
-
                     .font(.custom("AvenirNext-Bold", size: 34))
                     .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                     .padding()
@@ -43,7 +40,7 @@ struct FoodPreferencesView: View {
                                     .padding()
                                     .frame(maxWidth: .infinity)
                                     .background(selectedPreferences.contains(preference) ? Color(red: 67/255, green: 103/255, blue: 70/255).opacity(0.8) : Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
-                                    .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
+                                    .foregroundColor(selectedPreferences.contains(preference) ? Color.white : Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                                     .cornerRadius(10)
                             }
                         }
@@ -66,11 +63,7 @@ struct FoodPreferencesView: View {
                     }
                 }) {
                     Text("Get Food Information")
-
-                        .font(.title2)
-
                         .font(.custom("AvenirNext-Regular", size: 22))
-
                         .padding()
                         .frame(maxWidth: .infinity)
                         .background(Color(red: 67/255, green: 103/255, blue: 70/255))
