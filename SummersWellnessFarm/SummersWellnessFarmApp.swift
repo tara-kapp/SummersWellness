@@ -17,6 +17,7 @@ struct SummersWellnessFarmApp: App {
             ContentView()
                 .modelContainer(for: [User.self, Booking.self, Activity.self])
                 .environmentObject(userSession)
+
             
         }
     }
