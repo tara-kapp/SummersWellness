@@ -33,9 +33,9 @@ struct FoodPreferencesView: View {
                             }) {
                                 Text(preference)
 
-                                    .font(.headline)
+                                    //.font(.headline)
 
-                                    .font(.custom("AvenirNext-Regular", size: 22))
+                                    .font(.custom("AvenirNext-Bold", size: 20))
 
                                     .padding()
                                     .frame(maxWidth: .infinity)

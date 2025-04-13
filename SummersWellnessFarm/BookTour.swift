@@ -31,18 +31,21 @@ struct BookTour: View {
                 .font(.custom("AvenirNext-Bold", size: 34))
                 .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                 .padding(.horizontal)
+                .frame(maxWidth: .infinity, alignment: .center)
             
             // Date Picker
             DatePicker("Select Tour Date", selection: $selectedDate, displayedComponents: .date)
+                .font(.custom("AvenirNext-Regular", size: 17))
+                .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                 .padding()
-                .background(Color(.systemBackground))
+                .background(Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
                 .cornerRadius(10)
                 .shadow(radius: 5)
             
             // List of Available Tours
             Text("Available Tours")
-                .font(.title2)
-                .fontWeight(.bold)
+                .font(.custom("AvenirNext-Bold", size: 22))
+                .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                 .padding(.horizontal)
             
             List(availableTours) { tour in
@@ -60,11 +63,11 @@ struct BookTour: View {
                 }
             }) {
                 Text("Book Now")
-                    .font(.headline)
+                    .font(.custom("AvenirNext-Regular", size: 22))
                     .foregroundColor(.white)
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(selectedTour == nil ? Color.gray : Color.green)
+                    .background(selectedTour == nil ? Color(red: 67/255, green: 103/255, blue: 70/255) : Color(red: 67/255, green: 103/255, blue: 70/255))
                     .cornerRadius(10)
                     .shadow(radius: 5)
             }
@@ -101,19 +104,20 @@ struct TourRow: View {
         HStack {
             VStack(alignment: .leading) {
                 Text(tour.name)
-                    .font(.headline)
+                    .font(.custom("AvenirNext-Bold", size: 17))
+                    .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                 Text(tour.description)
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
+                    .font(.custom("AvenirNext-Regular", size: 15))
+                    .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
             }
             Spacer()
             if isSelected {
                 Image(systemName: "checkmark.circle.fill")
-                    .foregroundColor(.green)
+                    .foregroundColor(Color(red: 67/255, green: 103/255, blue: 70/255))
             }
         }
         .padding()
-        .background(isSelected ? Color.green.opacity(0.2) : Color.clear)
+        .background(isSelected ? Color(red: 67/255, green: 103/255, blue: 70/255).opacity(0.1) : Color(red: 228/255, green: 173/255, blue: 102/255).opacity(0.03))
         .cornerRadius(10)
     }
 }
