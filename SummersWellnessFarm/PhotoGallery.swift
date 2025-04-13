@@ -63,7 +63,6 @@ struct ResortPhotoGallery: View {
                 .padding()
             }
         }
-        .navigationTitle("Explore the Resort")
         .sheet(item: $fullScreenData) { data in
             if let images = areas[data.area] {
                 FullScreenImageView(images: images, currentIndex: Binding(
@@ -124,6 +123,7 @@ struct FullScreenImageView: View {
             }
         }
         .padding()
+        .background(Color(red: 228/255, green: 173/255, blue: 102/255).opacity(0.03))
     }
 }
 

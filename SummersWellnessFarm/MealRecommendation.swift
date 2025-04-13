@@ -22,8 +22,7 @@ struct MealView: View {
 
     var body: some View {
         VStack {
-            Text("Let us help you pick your next meal!")
-                .font(.largeTitle)
+            Text("Let us help you pick your next meal")
                 .font(.custom("AvenirNext-Bold", size: 34))
                 .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                 .padding(.bottom, 10)
@@ -32,7 +31,8 @@ struct MealView: View {
                 Text("If you have any Dietary Restrictions please go to the Dietary Restrictions form and add any information necessary to enjoy your meal, otherwise the AI will assume that you have no restrictions. ")
                 NavigationLink(destination: FoodFormView(viewModel: viewModel)) {
                     Text("Go to Dietary Restrictions Form")
-                        .foregroundColor(.blue)
+                        .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
+                        .underline(true, color: Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                 }
             }
                 .font(.custom("AvenirNext-Regular", size: 18))
@@ -62,13 +62,13 @@ struct MealView: View {
                             toggleSelection(for: preference)
                         }) {
                             Text(preference)
-                                .font(.custom("AvenirNext-Regular", size: 17))
+                                .font(.custom("AvenirNext-Bold", size: 20))
                                 .padding()
                                 .frame(maxWidth: .infinity)
                                 .background(selectedPreferences.contains(preference)
                                             ? Color(red: 67/255, green: 103/255, blue: 70/255).opacity(0.9)
                                             : Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
-                                .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
+                                .foregroundColor(selectedPreferences.contains(preference) ? Color.white : Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                                 .cornerRadius(10)
                         }
                     }

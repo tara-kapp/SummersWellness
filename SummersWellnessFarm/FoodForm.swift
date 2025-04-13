@@ -79,17 +79,18 @@ struct FoodFormView: View {
             if showConfirmation, let guest = viewModel.currentGuest {
                 Section {
                     Text("Saved preferences for \(guest.name)")
-                        .foregroundColor(.green)
-                        .bold()
+                        .font(.custom("AvenirNext-Bold", size: 17))
+                        .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                 }
 
                 NavigationLink(destination: MealView(viewModel: viewModel)) {
                     Text("Go to Meal Recommender")
-                        .foregroundColor(.blue)
+                        .font(.custom("AvenirNext-Bold", size: 17))
+                        .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                 }
             }
         }
-        .navigationTitle("Food Form")
+        
         .onAppear {
             if let guest = viewModel.currentGuest {
                 name = guest.name

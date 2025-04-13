@@ -54,18 +54,22 @@ struct CalorieTrackerForm: View {
     var body: some View {
             ScrollView {
                 VStack(spacing: 20) {
-                    Text("Health & Wellness Tracker!")
-                        .font(.largeTitle)
+                    Text("Health & Wellness Tracker")
                         .font(.custom("AvenirNext-Bold", size: 34))
                         .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                         .padding(.bottom, 10)
-                    // 🌟 User Info
-                    GroupBox(label: Label("Your Info", systemImage: "person.fill")) {
+                    //User Info
+                    GroupBox(label: Label("Your Info", systemImage: "person.fill")
+                        .font(.custom("AvenirNext-Bold", size: 17))
+                        .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))) {
+                            
                         VStack(spacing: 10) {
                             Stepper("Age: \(age)", value: $age, in: 5...100)
+                                .font(.custom("AvenirNext-Bold", size: 18))
+                                .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                             Text("Gender")
-                                .font(.subheadline)
-                                .fontWeight(.semibold)
+                                .font(.custom("AvenirNext-Bold", size: 22))
+                                .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
 
                             Picker("Gender", selection: $gender) {
                                 ForEach(genderOptions, id: \.self) {
@@ -73,34 +77,46 @@ struct CalorieTrackerForm: View {
                                 }
                             }
                             .pickerStyle(SegmentedPickerStyle())
+                            .padding()
 
 
                             HStack {
                                 Text("Height (in)")
+                                    .font(.custom("AvenirNext-Bold", size: 18))
+                                    .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                                 Spacer()
                                 TextField("Height", value: $height, format: .number)
                                     .keyboardType(.decimalPad)
                                     .multilineTextAlignment(.trailing)
+                                    .font(.custom("AvenirNext-Bold", size: 18))
+                                    .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                             }
 
                             HStack {
                                 Text("Weight (lbs)")
+                                    .font(.custom("AvenirNext-Bold", size: 18))
+                                    .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                                 Spacer()
                                 TextField("Weight", value: $weight, format: .number)
                                     .keyboardType(.decimalPad)
                                     .multilineTextAlignment(.trailing)
+                                    .font(.custom("AvenirNext-Bold", size: 18))
+                                    .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                             }
                         }
                         .padding(.top, 5)
                     }
 
                     // 💪 Activities
-                    GroupBox(label: Label("Today's Activities", systemImage: "flame.fill")) {
+                    GroupBox(label: Label("Today's Activities", systemImage: "flame.fill")
+                        .font(.custom("AvenirNext-Bold", size: 17))
+                        .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))) {
                         ForEach(resortActivities, id: \.self) { activity in
                             VStack(alignment: .leading, spacing: 10) {
                                 HStack {
                                     Text(activity)
-                                        .font(.headline)
+                                        .font(.custom("AvenirNext-Regular", size: 20))
+                                        .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                                     Spacer()
                                     Button(action: {
                                         withAnimation {
@@ -114,7 +130,7 @@ struct CalorieTrackerForm: View {
                                         }
                                     }) {
                                         Image(systemName: expandedActivities.contains(activity) ? "chevron.down" : "chevron.right")
-                                            .foregroundColor(.gray)
+                                            .foregroundColor(Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
                                     }
                                 }
 
@@ -145,16 +161,26 @@ struct CalorieTrackerForm: View {
                         }
                     }
                     
-                    GroupBox(label: Label("General Info", systemImage: "flame.fill")){
+                    GroupBox(label: Label("General Info", systemImage: "flame.fill")
+                        .font(.custom("AvenirNext-Bold", size: 17))
+                        .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))){
                         VStack(alignment: .leading, spacing: 15) {
                             KnownItemEntry(title: "Steps (Walking Only)", itemValue: $steps)
+                                .font(.custom("AvenirNext-Regular", size: 17))
+                                .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                             KnownItemEntry(title: "Known Calories Burned(Do not do this and enter activities)", itemValue: $calories)
+                                .font(.custom("AvenirNext-Regular", size: 17))
+                                .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                             KnownItemEntry(title: "Known Hours of Sleep", itemValue: $hoursOfSleep)
+                                .font(.custom("AvenirNext-Regular", size: 17))
+                                .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                         }
                     }
 
                     // 🍽️ Meals
-                    GroupBox(label: Label("Today's Meals", systemImage: "fork.knife")) {
+                    GroupBox(label: Label("Today's Meals", systemImage: "fork.knife")
+                        .font(.custom("AvenirNext-Bold", size: 17))
+                        .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))) {
                         VStack(alignment: .leading, spacing: 15) {
                             MealEntry(title: "Breakfast", mealText: $breakfast)
                             MealEntry(title: "Lunch", mealText: $lunch)
@@ -163,7 +189,7 @@ struct CalorieTrackerForm: View {
                         }
                     }
 
-                    // ✅ Submit Button
+                    // Submit Button
                                         Button("Submit") {
                                             // Dismiss any focused fields.
                                             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
@@ -212,15 +238,16 @@ struct CalorieTrackerForm: View {
                             ForEach(result.summary.components(separatedBy: "\n"), id: \.self) { line in
                                 if line.lowercased().contains("meal calorie") {
                                     Label(line, systemImage: "fork.knife")
-                                        .font(.title3)
-                                        .fontWeight(.semibold)
+                                        .font(.custom("AvenirNext-Regular", size: 20))
+                                        .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                                 } else if line.lowercased().contains("activity calorie") {
                                     Label(line, systemImage: "flame")
-                                        .font(.title3)
-                                        .fontWeight(.semibold)
+                                        .font(.custom("AvenirNext-Regular", size: 20))
+                                        .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                                 } else if line.lowercased().contains("summary") {
                                     Text("📝 " + line)
-                                        .font(.headline)
+                                        .font(.custom("AvenirNext-Bold", size: 22))
+                                        .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                                         .padding(.top, 8)
                                 } else {
                                     Text(line)

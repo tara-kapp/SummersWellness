@@ -55,6 +55,7 @@ struct WeddingDashboard: View {
                     .background(Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
                     .cornerRadius(16)
                     .shadow(radius: 2)
+                    .padding(.horizontal)
                     
                     // BUTTON GRID
                     LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {

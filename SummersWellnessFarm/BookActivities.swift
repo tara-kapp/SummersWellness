@@ -67,11 +67,9 @@ struct BookActivities: View {
         VStack {
             Text("Book Activities")
                 .font(.custom("AvenirNext-Bold", size: 34))
-                    .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
+                .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                     .padding()
-            Capsule()
-                    .frame(width: 60, height: 4)
-                    .foregroundColor(Color(red: 228/255, green: 173/255, blue: 102/255))
+            
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: 20) {
                     ForEach(sortedCategories, id: \ .self) { group in
