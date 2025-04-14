@@ -154,6 +154,7 @@ struct DashboardWideButton: View {
             } else {
                 Text("No data")
             }
+        case "Book a Meal": BookMealView()
         case "Benefits of Fresh Grown Food": FoodPreferencesView()
         default: Text("Unknown destination for: \(title)")
         }
