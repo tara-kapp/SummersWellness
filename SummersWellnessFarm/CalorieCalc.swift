@@ -329,11 +329,25 @@ struct KnownItemEntry: View {
     CalorieTrackerForm()
 }*/
 
+
 import SwiftUI
 
 struct CalorieResult: Identifiable {
     let id = UUID()
     let summary: String
+}
+
+// Custom GroupBox Style to remove default gray
+struct ClearGroupBoxStyle: GroupBoxStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            configuration.label
+            configuration.content
+        }
+        .padding()
+        .background(Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
+        .cornerRadius(8)
+    }
 }
 
 struct CalorieTrackerForm: View {
@@ -366,7 +380,6 @@ struct CalorieTrackerForm: View {
     ]
     let intensityOptions = ["Light", "Moderate", "Vigorous"]
 
-    let groupBackground = Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08)
     let pageBackground = Color(red: 228/255, green: 173/255, blue: 102/255).opacity(0.03)
     let textColor = Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85)
 
@@ -377,8 +390,7 @@ struct CalorieTrackerForm: View {
                     .font(.custom("AvenirNext-Bold", size: 34))
                     .foregroundColor(textColor)
                     .padding(.top)
-                
-                
+
                 // User Info
                 GroupBox(label: Label("Your Info", systemImage: "person.fill")
                     .font(.custom("AvenirNext-Bold", size: 22))
@@ -418,11 +430,8 @@ struct CalorieTrackerForm: View {
                         }
                         .font(.custom("AvenirNext-Regular", size: 22))
                         .foregroundColor(textColor)
-                        .padding()
-                        .background(groupBackground)
-                        .cornerRadius(8)
                     }
-              
+                    .groupBoxStyle(ClearGroupBoxStyle())
 
                 // Activities
                 GroupBox(label: Label("Today's Activities", systemImage: "flame.fill")
@@ -477,10 +486,8 @@ struct CalorieTrackerForm: View {
                         }
                         .font(.custom("AvenirNext-Regular", size: 22))
                         .foregroundColor(textColor)
-                        .padding()
-                        .background(groupBackground)
-                        .cornerRadius(8)
                     }
+                    .groupBoxStyle(ClearGroupBoxStyle())
 
                 // General Info
                 GroupBox(label: Label("General Info", systemImage: "bed.double.fill")
@@ -491,10 +498,8 @@ struct CalorieTrackerForm: View {
                             KnownItemEntry(title: "Known Calories Burned", itemValue: $calories)
                             KnownItemEntry(title: "Hours of Sleep", itemValue: $hoursOfSleep)
                         }
-                        .padding()
-                        .background(groupBackground)
-                        .cornerRadius(8)
                     }
+                    .groupBoxStyle(ClearGroupBoxStyle())
 
                 // Meals
                 GroupBox(label: Label("Today's Meals", systemImage: "fork.knife")
@@ -506,10 +511,8 @@ struct CalorieTrackerForm: View {
                             MealEntry(title: "Dinner", mealText: $dinner)
                             MealEntry(title: "Snack", mealText: $snack)
                         }
-                        .padding()
-                        .background(groupBackground)
-                        .cornerRadius(8)
                     }
+                    .groupBoxStyle(ClearGroupBoxStyle())
 
                 // Submit Button
                 Button("Submit") {
@@ -554,6 +557,8 @@ struct CalorieTrackerForm: View {
     }
 }
 
+// MARK: - Subviews
+
 struct MealEntry: View {
     var title: String
     @Binding var mealText: String
@@ -594,4 +599,5 @@ struct KnownItemEntry: View {
         }
     }
 }
+
 
