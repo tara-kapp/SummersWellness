@@ -124,7 +124,7 @@ struct MealView: View {
                 .background(Color(red: 129/255, green: 100/255, blue: 73/255).opacity(0.08))
                 .cornerRadius(10)
             }
-            Text("TODO: Eventually a NavLink to a meal Booking Page")
+            //Text("TODO: Eventually a NavLink to a meal Booking Page")
         }
         .padding()
         .background(Color(red: 228/255, green: 173/255, blue: 102/255).opacity(0.03))

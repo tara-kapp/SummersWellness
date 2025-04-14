@@ -111,7 +111,7 @@ struct LoginView: View {
             }
             .padding()
 
-            // ✅ Show SignupView as a sheet
+            // Show SignupView as a sheet
             .navigationDestination(isPresented: $isShowingSignup) {
                 SignupView()
             }
