@@ -17,9 +17,9 @@ struct ExploreTheFarm: View {
                 .padding(.top, 20)
             
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
-                DashboardWideButton(title: "Venues")
-                DashboardWideButton(title: "Food")
-                DashboardWideButton(title: "Activities")
+                DashboardWideButton(title: "Book Activities")
+                DashboardWideButton(title: "Farm Fresh Food")
+                DashboardWideButton(title: "Resort Spaces and Themes")
             }
             
             //space between buttons and title

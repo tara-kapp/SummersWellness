@@ -16,9 +16,14 @@ struct FoodDash: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 30) {
-                
-                // LOGO + HEADER
-                VStack(spacing: 8) {
+            
+            // LOGO + HEADER
+                    VStack(spacing: 8) {
+                        Image("Logo")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 180, height: 180)
+                        
                     Text("Food Dashboard")
                         .font(.custom("AvenirNext-Bold", size: 34))
                         .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
