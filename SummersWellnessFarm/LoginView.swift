@@ -33,11 +33,13 @@ struct LoginView: View {
                 
                 if userSession.isAuthenticated, let user = userSession.loggedInUser {
                     Text("Welcome, \(user.name)!")
-                        .font(.title)
+                        .font(.custom("AvenirNext-Regular", size: 34))
+                        .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                         .padding()
 
-                    Text("Select Your Dashboard:")
-                        .font(.headline)
+                    Text("Select Your Dashboard")
+                        .font(.custom("AvenirNext-Bold", size: 25))
+                        .foregroundColor(Color(red: 59/255, green: 41/255, blue: 30/255).opacity(0.85))
                         .padding(.top)
 
                     ForEach(DashboardType.allCases, id: \.self) { type in
@@ -109,7 +111,7 @@ struct LoginView: View {
             }
             .padding()
 
-            // ✅ Show SignupView as a sheet
+            // Show SignupView as a sheet
             .navigationDestination(isPresented: $isShowingSignup) {
                 SignupView()
             }
