@@ -1,6 +1,5 @@
 //
-//  Quiz.swift
-//  SummersWellnessFarm
+//  //  SummersWellnessFarm
 //
 //  Created by Sadie Hendrickson on 3/10/25.
 //
